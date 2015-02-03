@@ -11,19 +11,19 @@ include_once("./admin-init.php");
 //Kiểm tra đăng nhập
 if(!$dangNhap->kiemTraQuyenHan()) {
     //Hiển thị giao diện đăng nhập - báo lỗi đăng nhập
-    include ("./tp/tp-login.php");
+    include ("../tp/admin/tp-login.php");
 } else {
     
     //Include cấu hình chức năng
-    include_once("./chucnang/cauHinhChucNang.php");
+    include_once("./cauHinhChucNang.php");
     
     //Cấu hình chức năng mặc định
     if(empty($_GET["chucnang"]) || !isset($cauHinhChucNang[$_GET["chucnang"]])) $_GET["chucnang"] = "bangDieuKhien";
     
     //Include Functtion chức năng
-    include("./chucnang/".$cauHinhChucNang[$_GET["chucnang"]]["functionFile"]);
+    include("../chucnang/admin/".$cauHinhChucNang[$_GET["chucnang"]]["functionFile"]);
 
     //Hiển thị giao diện admin
-    include ("./tp/tp-admin-core.php");
+    include ("../tp/admin/tp-admin-core.php");
 }
 ?>

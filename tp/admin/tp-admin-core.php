@@ -94,7 +94,7 @@ if($dangNhap->kiemTraQuyenHan() == 3) { //Phần chỉ dành cho quản trị vi
 
       <div class="templatemo-content-wrapper">
         <div class="templatemo-content">
-          <?php include("./tp/".$cauHinhChucNang[$_GET["chucnang"]]["tpFile"]); ?>
+          <?php include("../tp/admin/".$cauHinhChucNang[$_GET["chucnang"]]["tpFile"]); ?>
         </div>
       </div>
       <!-- Modal -->
