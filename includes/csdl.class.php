@@ -7,4 +7,5 @@ if (!defined("ADMIN") && !defined("KHATAHU")) {
 <?php
 $csdl = new mysqli('localhost', 'root', '','aptech');
 $csdl->set_charset('utf8');
+$csdl->query("SET time_zone = '+07:00'");
 ?>
