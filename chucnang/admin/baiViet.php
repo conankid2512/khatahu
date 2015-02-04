@@ -169,6 +169,7 @@ if($_GET["chucnang"] == "suaBaiViet" && $maBaiViet_data) {
         //Kiểm tra hình đại diện
         $kiemTraHinh = false;
         if(!empty($_POST["hinhNho"])) {
+            $_POST["hinhNho"] = str_replace($_SESSION["baseURL"],"/",$_POST["hinhNho"]);
             if(file_exists("..".$_POST["hinhNho"])) {
                 $finfo = finfo_open(FILEINFO_MIME_TYPE);
                 $kieuFile = finfo_file($finfo, "..".$_POST["hinhNho"]);
@@ -339,7 +340,7 @@ if($_GET["chucnang"] == "dSBaiViet" || $_GET["chucnang"] == "xoaBaiViet" || ($_G
         }
         
         $dSBaiViet_data[$i]["linkDel"] = "<a data-mabaiviet=\"".$dSBaiViet_ketQua["maBaiViet"]."\" data-tenbaiviet=\"".$dSBaiViet_ketQua["tenBaiViet"]."\" data-tentacgia=\"".$dSBaiViet_ketQua["tenTacGia"]."\" class=\"xoaBaiVietURL\" href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#xoaBaiVietModal\"><i class=\"fa fa-times\"></i></a>";
-        $dSBaiViet_data[$i]["linkBaiViet"] = "<a href=\"".layTuyChon("urlChinh")."/?chucnang=baiViet&maBaiViet=".$dSBaiViet_ketQua["maBaiViet"]."\">".$dSBaiViet_ketQua["tenBaiViet"]."</a>";
+        $dSBaiViet_data[$i]["linkBaiViet"] = "<a href=\"".layTuyChon("urlChinh")."?chucnang=baiViet&maBaiViet=".$dSBaiViet_ketQua["maBaiViet"]."\">".$dSBaiViet_ketQua["tenBaiViet"]."</a>";
         $i++;
     }
     if($i == 0) {

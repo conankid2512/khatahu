@@ -2313,3 +2313,12 @@ footer .stars {
 	width: 37px;
 }
 }
+
+/*KHATAHU custom css*/
+
+.sec-info img {
+	display: block;
+	height: auto;
+	max-width: 100%;
+	vertical-align: middle;
+}
