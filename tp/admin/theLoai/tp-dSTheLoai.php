@@ -36,6 +36,8 @@ if(!empty($dSTheLoai_data) && $dangNhap->kiemTraQuyenHan() == 3) {
                         <tr>
                             <th>#</th>
                             <th>Tên thể loại</th>
+                            <th>TT Menu</th>
+                            <th>TT trang chủ</th>
                             <th><i class="fa fa-edit"></i> Sửa</th>
                             <th><i class="fa fa-times"></i> Xóa</th>
                         </tr>
@@ -45,6 +47,8 @@ if(!empty($dSTheLoai_data) && $dangNhap->kiemTraQuyenHan() == 3) {
                         <tr>
                             <td><input type="checkbox" name="idDaChon[]" value="<?php echo $theLoai_data["maTheLoai"]; ?>" /></td>
                             <td><?php echo $theLoai_data["tenTheLoai"]; ?></td>
+                            <td><?php echo $theLoai_data["tTMenu"]; ?></td>
+                            <td><?php echo $theLoai_data["tTTrangChu"]; ?></td>
                             <td><?php echo $theLoai_data["linkEdit"]; ?></td>
                             <td><?php echo $theLoai_data["linkDel"]; ?></i></td>
                         </tr>

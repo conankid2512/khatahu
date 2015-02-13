@@ -68,14 +68,14 @@ function layCautrucTheLoai($theLoai = 0) {
     $cauTrucTheLoai = null;
     $tmp = null;
     if($theLoai == 0 || $theLoai === "all") {
-        $cauTruc_sql = "SELECT maTheLoai, tenTheLoai FROM theloai WHERE maTheLoaiCha IS NULL ORDER BY tenTheLoai ASC";
+        $cauTruc_sql = "SELECT maTheLoai, tenTheLoai, tTMenu, tTTrangChu FROM theloai WHERE maTheLoaiCha IS NULL ORDER BY tenTheLoai ASC";
     } else {
-        $cauTruc_sql = "SELECT maTheLoai, tenTheLoai FROM theloai WHERE maTheLoaiCha = ".$theLoai."  ORDER BY tenTheLoai ASC";
+        $cauTruc_sql = "SELECT maTheLoai, tenTheLoai, tTMenu, tTTrangChu FROM theloai WHERE maTheLoaiCha = ".$theLoai."  ORDER BY tenTheLoai ASC";
     }
     $cauTruc = $csdl->query($cauTruc_sql);
     if($cauTruc) {
         while($cauTruc_ketQua = $cauTruc->fetch_array(MYSQLI_ASSOC)) {
-            $cauTrucTheLoai[$cauTruc_ketQua["maTheLoai"]]["tenTheLoai"] = $cauTruc_ketQua["tenTheLoai"];
+            $cauTrucTheLoai[$cauTruc_ketQua["maTheLoai"]] = $cauTruc_ketQua;
             if($theLoai === "all") {
                 $tmp = layCautrucTheLoai($cauTruc_ketQua["maTheLoai"],true);
                 if($tmp != null) {
@@ -85,6 +85,31 @@ function layCautrucTheLoai($theLoai = 0) {
         }
     } 
     return $cauTrucTheLoai;
+}
+
+//Hiển thị top menu
+function hienThiTopMenu() {
+    global $csdl;
+    $topMenu = "<li class=\"active\"><a href=\"index.html\">TRANG CHỦ</a></li>";
+    $topLevel_sql = "SELECT maTheLoai, tenTheLoai FROM theloai WHERE maTheLoaiCha IS NULL AND tTMenu > 0 ORDER BY tTMenu ASC, tenTheLoai ASC";
+    $topLevel = $csdl->query($topLevel_sql);
+    if($topLevel) {
+        while($topLevel_ketQua = $topLevel->fetch_array(MYSQLI_ASSOC)) {
+            $secondLevel_sql = "SELECT maTheLoai, tenTheLoai FROM theloai WHERE maTheLoaiCha = ".$topLevel_ketQua["maTheLoai"]." AND tTMenu > 0 ORDER BY tTMenu ASC, tenTheLoai ASC";
+            $secondLevel = $csdl->query($secondLevel_sql);
+            if($secondLevel && $secondLevel->num_rows > 0) {
+                $topMenu .= "<li class=\"dropdown\"><a class=\"dropdown-toggle\" href=\"http://google.com\">".$topLevel_ketQua["tenTheLoai"]."</a><span data-toggle=\"dropdown\" class=\"dropdown-toggle ion-ios7-arrow-down nav-icn khatahu\"></span>";
+                $topMenu .= "<ul class=\"dropdown-menu text-capitalize\" role=\"menu\">";
+                while($secondLevel_ketQua = $secondLevel->fetch_array(MYSQLI_ASSOC)) {
+                    $topMenu .= "<li><a href=\"javascript:void(0)\"><span class=\"ion-ios7-arrow-right nav-sub-icn\"></span>".$secondLevel_ketQua["tenTheLoai"]."</a></li>";
+                }
+                $topMenu .= "</ul></li>";
+            } else {
+                $topMenu .= "<li><a href=\"index.html\">".$topLevel_ketQua["tenTheLoai"]."</a></li>";
+            }
+        }
+    }
+    return $topMenu;
 }
 
 

@@ -44,6 +44,23 @@ if (!defined("ADMIN")) {
                 <div class="help-block with-errors"></div>
             </div>
         </div>
+        <div class="row">
+                <div class="col-md-12 alert alert-warning">
+                    Các tùy chọn sau chỉ có hiệu lực với thể loại cha. Nhập số 0 để không hiển thị trên menu hoặc trang chủ.
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 margin-bottom-15 form-group">
+                    <label for="tenTheLoai">Thứ tự trên Menu chính</label>
+                    <input class="form-control" id="tTMenu" value="" type="text" name="tTMenu" pattern="^([0-9]){1,5}$" data-error="Số nguyên dương, tối đa 5 chữ số" />
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="col-md-6 margin-bottom-15 form-group">
+                    <label for="tenTheLoai">Thứ tự trên trang chủ</label>
+                    <input class="form-control" id="tTTrangChu" value="" type="text" name="tTTrangChu" pattern="^([0-9]){1,5}$" data-error="Số nguyên dương, tối đa 5 chữ số" />
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
                      
         <div class="row templatemo-form-buttons">
             <div class="col-md-12">

@@ -12,7 +12,7 @@ $maTheLoai_data = null;
 if(!empty($_GET["maTheLoai"])) {
     //Anti SQL-Ịnection
     $_GET["maTheLoai"] = sprintf("%d",$_GET["maTheLoai"]); 
-    $maTheLoai_sql =  "SELECT maTheLoai, tenTheLoai, IFNULL(maTheLoaiCha,0) as maTheLoaiCha FROM theloai WHERE maTheLoai = ".$_GET["maTheLoai"];
+    $maTheLoai_sql =  "SELECT maTheLoai, tenTheLoai, tTMenu, tTTrangChu, IFNULL(maTheLoaiCha,0) as maTheLoaiCha FROM theloai WHERE maTheLoai = ".$_GET["maTheLoai"];
     $maTheLoai = $csdl->query($maTheLoai_sql);
     if ($maTheLoai->num_rows == 1) {
         $maTheLoai_data = $maTheLoai->fetch_array(MYSQLI_ASSOC);
@@ -27,13 +27,26 @@ if($_GET["chucnang"] == "themTheLoai") {
         $baoLoi = "Bạn không có đủ quyền thực hiện tác vụ này!";
     } else {
         if(!empty($_POST["tenTheLoai"])) {
-            if($_POST["maTheLoaiCha"]) {
-                //Anti SQL-Ịnection
-                $_POST["maTheLoaiCha"] = sprintf("%d",$_POST["maTheLoaiCha"]);
-            } else {
+            if(empty($_POST["maTheLoaiCha"])) {
+                $_POST["maTheLoaiCha"] = 0;
+            }
+            $_POST["maTheLoaiCha"] = sprintf("%d",$_POST["maTheLoaiCha"]);
+
+            if(empty($_POST["tTMenu"])) {
+                $_POST["tTMenu"] = 0;
+            }
+            $_POST["tTMenu"] = sprintf("%d",$_POST["tTMenu"]);
+            
+            if(empty($_POST["tTTrangChu"]) || $_POST["maTheLoaiCha"] != 0) {
+                $_POST["tTTrangChu"] = 0;
+            }
+            $_POST["tTTrangChu"] = sprintf("%d",$_POST["tTTrangChu"]);
+            
+            if(!$_POST["maTheLoaiCha"]) {
                 $_POST["maTheLoaiCha"] = "NULL";
             }
-            $themTheLoai_sql = "INSERT INTO `theloai`(`tenTheLoai`, `maTheLoaiCha`) VALUES ('".$csdl->real_escape_string($_POST["tenTheLoai"])."',".$_POST["maTheLoaiCha"].")";
+            
+            $themTheLoai_sql = "INSERT INTO `theloai`(`tenTheLoai`, `maTheLoaiCha`, `tTMenu`, `tTTrangChu`) VALUES ('".$csdl->real_escape_string($_POST["tenTheLoai"])."',".$_POST["maTheLoaiCha"].",".$_POST["tTMenu"].",".$_POST["tTTrangChu"].")";
             $themTheLoai = $csdl->query($themTheLoai_sql);
             if($themTheLoai) {
                 $thanhCong = "Thêm thể loại ".$_POST["tenTheLoai"]." thành công";
@@ -50,19 +63,38 @@ if($_GET["chucnang"] == "suaTheLoai") {
     if($dangNhap->kiemTraQuyenHan(0) != 3) {
         $baoLoi = "Bạn không có đủ quyền thực hiện tác vụ này!";
     } elseif($maTheLoai_data) {
+        $theLoaiCha = layCautrucTheLoai(0);
         if(!empty($_POST["tenTheLoai"])) {
-            if($_POST["maTheLoaiCha"] != $maTheLoai_data["maTheLoai"]) {
-                if($_POST["maTheLoaiCha"]) {
-                    //Anti SQL-Ịnection
-                    $_POST["maTheLoaiCha"] = sprintf("%d",$_POST["maTheLoaiCha"]);
-                } else {
+            
+            if(in_array($_GET["maTheLoai"],array_keys($theLoaiCha)) && $_POST["maTheLoaiCha"] != 0) {
+                $baoLoi = "Hiện tại chỉ hổ trợ thể loại tối đa 2 cấp";
+            } elseif (!in_array($_POST["maTheLoaiCha"],array_keys($theLoaiCha)) && $_POST["maTheLoaiCha"] != 0) {
+                $baoLoi = "Mã thể loại cha không hợp lệ";
+            }elseif($_POST["maTheLoaiCha"] != $maTheLoai_data["maTheLoai"]) {
+                if(empty($_POST["maTheLoaiCha"])) {
+                    $_POST["maTheLoaiCha"] = 0;
+                }
+                $_POST["maTheLoaiCha"] = sprintf("%d",$_POST["maTheLoaiCha"]);
+                
+                if(empty($_POST["tTMenu"])) {
+                    $_POST["tTMenu"] = 0;
+                }
+                $_POST["tTMenu"] = sprintf("%d",$_POST["tTMenu"]);
+                
+                if(empty($_POST["tTTrangChu"]) || $_POST["maTheLoaiCha"] != 0) {
+                    $_POST["tTTrangChu"] = 0;
+                }
+                $_POST["tTTrangChu"] = sprintf("%d",$_POST["tTTrangChu"]);
+                
+                if(!$_POST["maTheLoaiCha"]) {
                     $_POST["maTheLoaiCha"] = "NULL";
                 }
-                $suaTheLoai_sql = "UPDATE `theloai` SET `tenTheLoai`='".$csdl->real_escape_string($_POST["tenTheLoai"])."',`maTheLoaiCha`= ".$_POST["maTheLoaiCha"]." WHERE maTheLoai = ".$_GET["maTheLoai"];
+                
+                $suaTheLoai_sql = "UPDATE `theloai` SET `tenTheLoai`='".$csdl->real_escape_string($_POST["tenTheLoai"])."',`maTheLoaiCha`= ".$_POST["maTheLoaiCha"].",`tTMenu`=".$_POST["tTMenu"].",`tTTrangChu`=".$_POST["tTTrangChu"]." WHERE maTheLoai = ".$_GET["maTheLoai"];
                 $suaTheLoai = $csdl->query($suaTheLoai_sql);
                 if($suaTheLoai) {
                     // Lấy lại thông tin thể loại sau khi sửa
-                    $maTheLoai_sql =  "SELECT maTheLoai, tenTheLoai, IFNULL(maTheLoaiCha,0) as maTheLoaiCha FROM theloai WHERE maTheLoai = ".$_GET["maTheLoai"];
+                    $maTheLoai_sql =  "SELECT maTheLoai, tenTheLoai, tTMenu, tTTrangChu, IFNULL(maTheLoaiCha,0) as maTheLoaiCha FROM theloai WHERE maTheLoai = ".$_GET["maTheLoai"];
                     $maTheLoai = $csdl->query($maTheLoai_sql);
                     $maTheLoai_data = $maTheLoai->fetch_array(MYSQLI_ASSOC);
                     
@@ -75,7 +107,6 @@ if($_GET["chucnang"] == "suaTheLoai") {
                 $baoLoi = "Thể loại không thể là con của chính nó!";
             }
         }
-        $theLoaiCha = layCautrucTheLoai(0);
         
         //Loại bỏ mã thể loại đang chỉnh sủa khỏi danh sách thể loại cha
         if(isset($theLoaiCha[$_GET["maTheLoai"]])) {
@@ -110,6 +141,7 @@ if($_GET["chucnang"] == "dSTheLoai" || $_GET["chucnang"] == "xoaTheLoai") {
         } else {
             $i = 0;
             foreach($cauTrucTheLoai as $maTheloaiCha => $theLoaiCha_data) {
+                $dSTheLoai_data[$i] = $theLoaiCha_data;
                 $dSTheLoai_data[$i]["tenTheLoai"] = $theLoaiCha_data["tenTheLoai"];
                 $dSTheLoai_data[$i]["maTheLoai"] = $maTheloaiCha;
                 $dSTheLoai_data[$i]["linkEdit"] = "<a href=\"".layTuyChon("urlChinh")."admin/?chucnang=suaTheLoai&maTheLoai=".$maTheloaiCha."\"><i class=\"fa fa-edit\"></i></a>";
@@ -117,6 +149,8 @@ if($_GET["chucnang"] == "dSTheLoai" || $_GET["chucnang"] == "xoaTheLoai") {
                 $i++;
                 if(isset($theLoaiCha_data["theLoaiCon"])) {
                     foreach($theLoaiCha_data["theLoaiCon"] as $maTheLoaiCon => $theLoaiCon_data) {
+                        $dSTheLoai_data[$i]["tTMenu"] = "-------- ".$theLoaiCon_data["tTMenu"];
+                        $dSTheLoai_data[$i]["tTTrangChu"] = "";
                         $dSTheLoai_data[$i]["tenTheLoai"] = $theLoaiCha_data["tenTheLoai"]." / ".$theLoaiCon_data["tenTheLoai"];
                         $dSTheLoai_data[$i]["maTheLoai"] = $maTheLoaiCon;
                         $dSTheLoai_data[$i]["linkEdit"] = "<a href=\"".layTuyChon("urlChinh")."admin/?chucnang=suaTheLoai&maTheLoai=".$maTheLoaiCon."\"><i class=\"fa fa-edit\"></i></a>";
