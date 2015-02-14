@@ -2197,3 +2197,7 @@ footer .stars {
 a.dropdown-toggle {
 	padding-right: 39px !important;
 }
+
+#main {
+	min-height:950px
+}

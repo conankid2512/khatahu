@@ -90,7 +90,7 @@ function layCautrucTheLoai($theLoai = 0) {
 //Hiển thị top menu
 function hienThiTopMenu() {
     global $csdl;
-    $topMenu = "<li class=\"active\"><a href=\"index.html\">TRANG CHỦ</a></li>";
+    $topMenu = "<li class=\"active\"><a href=\"".layTuyChon("urlChinh")."\">TRANG CHủ</a></li>";
     $topLevel_sql = "SELECT maTheLoai, tenTheLoai FROM theloai WHERE maTheLoaiCha IS NULL AND tTMenu > 0 ORDER BY tTMenu ASC, tenTheLoai ASC";
     $topLevel = $csdl->query($topLevel_sql);
     if($topLevel) {
@@ -110,6 +110,14 @@ function hienThiTopMenu() {
         }
     }
     return $topMenu;
+}
+
+//Lấy thông tin top bài viết
+function topBaiViet() {
+    global $csdl;
+    $xemNhieu_sql = "SELECT * FROM baiViet WHERE ngayDang > DATE_SUB(NOW(), INTERVAL 30 DAY) ORDER BY luotXem DESC LIMIT 5";
+    $binhLuanNhieu_sql = "SELECT * FROM baiViet WHERE ngayDang > DATE_SUB(NOW(), INTERVAL 30 DAY) ORDER BY luotBinhLuan DESC LIMIT 5";
+    $moiNhat_sql = "SELECT * FROM baiViet ORDER BY ngayDang DESC LIMIT 5";
 }
 
 
