@@ -1,2 +1,0 @@
-RewriteEngine on 
-RewriteRule ^nikon-d610.jpg$ iplogger.php 
