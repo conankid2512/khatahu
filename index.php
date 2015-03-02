@@ -12,7 +12,8 @@ include_once("./init.php");
 include_once("./cauHinhChucNang.php");
 
 //Cấu hình chức năng mặc định
-if(empty($_GET["chucnang"]) || !isset($cauHinhChucNang[$_GET["chucnang"]])) $_GET["chucnang"] = "trangChu";
+if(!isset($_GET["chucnang"])) $_GET["chucnang"] = "trangChu";
+if(empty($_GET["chucnang"]) || !isset($cauHinhChucNang[$_GET["chucnang"]])) $_GET["chucnang"] = "404";
 
 //Include Functtion chức năng
 include("./chucnang/".$cauHinhChucNang[$_GET["chucnang"]]["functionFile"]);

@@ -62,6 +62,14 @@ function tenQuyenHan($maQuyenHan) {
     return $quyenHan[$maQuyenHan];
 }
 
+//Hiển thị tên trạng thái bài viết
+function tenTrangThai($maTrangThai) {
+    $trangThai[0] = "Lưu nháp";
+    $trangThai[1] = "Chờ duyệt";
+    $trangThai[2] = "Đã duyệt";
+    return $trangThai[$maTrangThai];
+}
+
 //Lấy cấu trúc thể loại
 function layCautrucTheLoai($theLoai = 0) {
     global $csdl;
