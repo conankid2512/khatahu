@@ -327,13 +327,12 @@ if($_GET["chucnang"] == "dSBaiViet" || $_GET["chucnang"] == "xoaBaiViet" || ($_G
     $i = 0;
     while($dSBaiViet_ketQua = $dSBaiViet->fetch_array(MYSQLI_ASSOC)) {
         $dSBaiViet_data[$i] = $dSBaiViet_ketQua;
-        /*
         if($dangNhap->kiemTraQuyenHan() < 2) {
             $dSBaiViet_data[$i]["linkKiemDuyet"] = "";
         } else {
             $dSBaiViet_data[$i]["linkKiemDuyet"] = "<td><a href=\"".layTuyChon("urlChinh")."admin/?chucnang=kiemDuyetBaiViet&maBaiViet=".$dSBaiViet_ketQua["maBaiViet"]."\"><i class=\"fa fa-tasks\"></i></a></td>";
         }
-        */
+        
         if($dSBaiViet_ketQua["maTacGia"] == $_SESSION["dangNhap"]["maNhanVien"]) {
             $dSBaiViet_data[$i]["linkEdit"] = "<a href=\"".layTuyChon("urlChinh")."admin/?chucnang=suaBaiViet&maBaiViet=".$dSBaiViet_ketQua["maBaiViet"]."\"><i class=\"fa fa-edit\"></i></a>";
         } else {
