@@ -1,67 +1,199 @@
-            <?php $topBaiViet = topBaiViet(); ?>
             <!-- activities start -->
             <div class="col-sm-16 bt-space wow fadeInUp animated" data-wow-delay="1s" data-wow-offset="130"> 
               <!-- Nav tabs -->
               <ul class="nav nav-tabs nav-justified " role="tablist">
-                <li class="active"><a href="#xemnhieu" role="tab" data-toggle="tab">Xem nhiều</a></li>
-                <li><a href="#baimoi" role="tab" data-toggle="tab">Bài mới</a></li>
-                <li><a href="#binhluan" role="tab" data-toggle="tab">Bình luận</a></li>
+                <li class="active"><a href="#popular" role="tab" data-toggle="tab">Xem nhiều</a></li>
+                <li><a href="#recent" role="tab" data-toggle="tab">Bài mới</a></li>
+                <li><a href="#comments" role="tab" data-toggle="tab">Bình luận</a></li>
               </ul>
               
               <!-- Tab panes -->
               <div class="tab-content">
-                <div class="tab-pane active" id="xemnhieu">
+                <div class="tab-pane active" id="popular">
                   <ul class="list-unstyled">
-                  <?php foreach($topBaiViet["xemNhieu"] as $xemNhieu) { ?>
-                    <li> <a href="<?php echo layTuyChon("urlChinh")."?chucnang=baiViet&maBaiViet=".$xemNhieu["maBaiViet"];?>">
+                    <li> <a href="#">
                       <div class="row">
-                        <div class="col-sm-5 col-md-4"><img class="img-thumbnail pull-left" src="<?php echo str_replace("/uploads/source",$_SESSION["baseURL"]."uploads/thumbs/150",$xemNhieu["hinhNho"]) ; ?>" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-5 col-md-4"><img class="img-thumbnail pull-left" src="images/popular/pop-1.jpg" width="164" height="152" alt=""/> </div>
                         <div class="col-sm-11 col-md-12">
-                          <h4><?php echo $xemNhieu["tenBaiViet"]; ?></h4>
+                          <h4>Tellus. Phasellus viverra nulla ut metus</h4>
                           <div class="text-danger sub-info">
-                            <div class="time"><span class="ion-android-data icon"></span><time class="timeago" datetime="<?php echo $xemNhieu["timeago"]; ?>"><?php echo $xemNhieu["ngayDang"]; ?> GMT+7</time></div>
-                            <div class="comments"><span class="ion-chatbubbles icon"></span><?php echo $xemNhieu["luotBinhLuan"]; ?></div>
+                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
                           </div>
                         </div>
                       </div>
                       </a> </li>
-                  <?php } ?>
+                    <li> <a href="#">
+                      <div class="row">
+                        <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="images/popular/pop-2.jpg" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-11 col-md-12">
+                          <h4>The evolution of the apple ..</h4>
+                          <div class="text-danger sub-info">
+                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                          </div>
+                        </div>
+                      </div>
+                      </a> </li>
+                    <li> <a href="#">
+                      <div class="row">
+                        <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="images/popular/pop-3.jpg" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-11 col-md-12">
+                          <h4>The evolution of the apple ..</h4>
+                          <div class="text-danger sub-info">
+                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                          </div>
+                        </div>
+                      </div>
+                      </a> </li>
+                    <li> <a href="#">
+                      <div class="row">
+                        <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="images/popular/pop-4.jpg" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-11 col-md-12">
+                          <h4>The evolution of the apple ..</h4>
+                          <div class="text-danger sub-info">
+                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                          </div>
+                        </div>
+                      </div>
+                      </a> </li>
+                    <li> <a href="#">
+                      <div class="row">
+                        <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="images/popular/pop-5.jpg" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-11 col-md-12">
+                          <h4>The evolution of the apple ..</h4>
+                          <div class="text-danger sub-info">
+                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                          </div>
+                        </div>
+                      </div>
+                      </a> </li>
                   </ul>
                 </div>
-                <div class="tab-pane" id="baimoi">
+                <div class="tab-pane" id="recent">
                   <ul class="list-unstyled">
-                  <?php foreach($topBaiViet["moiNhat"] as $baiMoi) { ?>
-                    <li> <a href="<?php echo layTuyChon("urlChinh")."?chucnang=baiViet&maBaiViet=".$baiMoi["maBaiViet"];?>">
+                    <li> <a href="#">
                       <div class="row">
-                        <div class="col-sm-5 col-md-4"><img class="img-thumbnail pull-left" src="<?php echo str_replace("/uploads/source",$_SESSION["baseURL"]."uploads/thumbs/150",$baiMoi["hinhNho"]) ; ?>" width="164" height="152" alt=""/> </div>
-                        <div class="col-sm-11 col-md-12">
-                          <h4><?php echo $baiMoi["tenBaiViet"]; ?></h4>
+                        <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="images/popular/pop-5.jpg" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-11  col-md-12 ">
+                          <h4>The evolution of the apple ..</h4>
                           <div class="text-danger sub-info">
-                            <div class="time"><span class="ion-android-data icon"></span><time class="timeago" datetime="<?php echo $baiMoi["timeago"]; ?>"><?php echo $baiMoi["ngayDang"]; ?> GMT+7</time></div>
-                            <div class="comments"><span class="ion-chatbubbles icon"></span><?php echo $baiMoi["luotBinhLuan"]; ?></div>
+                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
                           </div>
                         </div>
                       </div>
                       </a> </li>
-                  <?php } ?>
+                    <li> <a href="#">
+                      <div class="row">
+                        <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="images/popular/pop-4.jpg" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-11  col-md-12 ">
+                          <h4>The evolution of the apple ..</h4>
+                          <div class="text-danger sub-info">
+                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                          </div>
+                        </div>
+                      </div>
+                      </a> </li>
+                    <li> <a href="#">
+                      <div class="row">
+                        <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="images/popular/pop-3.jpg" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-11  col-md-12 ">
+                          <h4>The evolution of the apple ..</h4>
+                          <div class="text-danger sub-info">
+                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                          </div>
+                        </div>
+                      </div>
+                      </a> </li>
+                    <li> <a href="#">
+                      <div class="row">
+                        <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="images/popular/pop-2.jpg" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-11  col-md-12 ">
+                          <h4>The evolution of the apple ..</h4>
+                          <div class="text-danger sub-info">
+                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                          </div>
+                        </div>
+                      </div>
+                      </a> </li>
+                    <li> <a href="#">
+                      <div class="row">
+                        <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="images/popular/pop-1.jpg" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-11  col-md-12 ">
+                          <h4>The evolution of the apple ..</h4>
+                          <div class="text-danger sub-info">
+                            <div class="time"><span class="ion-android-data icon"></span>Dec 16 2014</div>
+                            <div class="comments"><span class="ion-chatbubbles icon"></span>351</div>
+                            <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
+                          </div>
+                        </div>
+                      </div>
+                      </a> </li>
                   </ul>
                 </div>
-                <div class="tab-pane" id="binhluan">
+                <div class="tab-pane" id="comments">
                   <ul class="list-unstyled">
-                  <?php foreach($topBaiViet["binhLuanNhieu"] as $binhLuanNhieu) { ?>
-                    <li> <a href="<?php echo layTuyChon("urlChinh")."?chucnang=baiViet&maBaiViet=".$binhLuanNhieu["maBaiViet"];?>">
+                    <li> <a href="#">
                       <div class="row">
-                        <div class="col-sm-5 col-md-4"><img class="img-thumbnail pull-left" src="<?php echo str_replace("/uploads/source",$_SESSION["baseURL"]."uploads/thumbs/150",$binhLuanNhieu["hinhNho"]) ; ?>" width="164" height="152" alt=""/> </div>
-                        <div class="col-sm-11 col-md-12">
-                          <h4><?php echo $binhLuanNhieu["tenBaiViet"]; ?></h4>
-                          <div class="text-danger sub-info">
-                            <div class="time"><span class="ion-android-data icon"></span><time class="timeago" datetime="<?php echo $binhLuanNhieu["timeago"]; ?>"><?php echo $binhLuanNhieu["ngayDang"]; ?> GMT+7</time></div>
-                            <div class="comments"><span class="ion-chatbubbles icon"></span><?php echo $binhLuanNhieu["luotBinhLuan"]; ?></div>
-                          </div>
+                        <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="images/comments/com-1.jpg" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-11  col-md-12 ">
+                          <h4>Tellus Phasellus viverra nulla</h4>
+                          <p>Cum sociis natoque penatibus et magnis dis parturient montes..</p>
                         </div>
                       </div>
                       </a> </li>
-                  <?php } ?>
+                    <li> <a href="#">
+                      <div class="row">
+                        <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="images/comments/com-2.jpg" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-11  col-md-12 ">
+                          <h4>The evolution of the apple ..</h4>
+                          <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo..</p>
+                        </div>
+                      </div>
+                      </a> </li>
+                    <li> <a href="#">
+                      <div class="row">
+                        <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="images/comments/com-3.jpg" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-11  col-md-12 ">
+                          <h4>The evolution of the apple ..</h4>
+                          <p>Donec pede justo, fringilla vel, aliquet nec vulputate..</p>
+                        </div>
+                      </div>
+                      </a> </li>
+                    <li> <a href="#">
+                      <div class="row">
+                        <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="images/comments/com-4.jpg" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-12">
+                          <h4>The evolution of the apple ..</h4>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+                        </div>
+                      </div>
+                      </a> </li>
+                    <li> <a href="#">
+                      <div class="row">
+                        <div class="col-sm-5  col-md-4 "><img class="img-thumbnail pull-left" src="images/comments/com-5.jpg" width="164" height="152" alt=""/> </div>
+                        <div class="col-sm-11  col-md-12 ">
+                          <h4>The evolution of the apple ..</h4>
+                          <p>Beatae vitae dicta sunt.explicabo ipsam..</p>
+                        </div>
+                      </div>
+                      </a> </li>
                   </ul>
                 </div>
               </div>

@@ -10,8 +10,9 @@
                         <div class="author"><span class="ion-person icon"></span>Viết bởi: <?php echo $maBaiViet_data["tenTacGia"]; ?></div>
                         <div class="time"><span class="ion-android-data icon"></span><time class="timeago" datetime="<?php echo $maBaiViet_data["timeago"]; ?>"><?php echo $maBaiViet_data["ngayDang"]; ?> GMT+7</time></div>
                         <div class="comments"><span class="ion-chatbubbles icon"></span>204</div>
+                        <div class="stars"><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star"></span><span class="ion-ios7-star-half"></span></div>
                       </div>
-                        <?php echo $maBaiViet_data["noiDung"]; ?>
+<?php echo $maBaiViet_data["noiDung"]; ?>
                       <hr>
                     </div>
                   </div>

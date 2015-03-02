@@ -1,97 +1,96 @@
 <?php
-define('lang_Select','Chọn');
-define('lang_Erase','Xóa');
-define('lang_Open','Mở');
-define('lang_Confirm_del','Bạn có chắc bạn muốn xóa bỏ tệp này không?');
+define('lang_Select','Select');
+define('lang_Erase','Xoá');
+define('lang_Open','Open');
+define('lang_Confirm_del','Bạn có chắc muốn xoá tập tinh này không?');
 define('lang_All','Tất cả');
-define('lang_Files','Tập tin');
+define('lang_Files','Tập tin khác');
 define('lang_Images','Hình ảnh');
-define('lang_Archives','Lưu trữ');
-define('lang_Error_Upload','Các tập tin đã tải lên vượt quá kích thước tối đa cho phép.');
-define('lang_Error_extension','Phần mở rộng tập tin là không được phép.');
-define('lang_Upload_file','Tải lên');
-define('lang_Filters','Bộ lọc');
-define('lang_Videos','Video');
+define('lang_Archives','Tập tin nén');
+define('lang_Error_Upload','The uploaded file exceeds the max size allowed.');
+define('lang_Error_extension','File extension is not allowed.');
+define('lang_Upload_file','Tải lên tập tin');
+define('lang_Filters','Lọc');
+define('lang_Videos','Đoạn phim');
 define('lang_Music','Âm nhạc');
-define('lang_New_Folder','Thư mục mới');
-define('lang_Folder_Created','Thư mục được tạo');
-define('lang_Existing_Folder','Thư mục hiện tại');
-define('lang_Confirm_Folder_del','Bạn có chắc muốn xóa các thư mục và tất cả các tập tin bên trong đó không?');
-define('lang_Return_Files_List','Trở về danh sách tập tin');
+define('lang_New_Folder','Tạo thư mục mới');
+define('lang_Folder_Created','Folder correctly created');
+define('lang_Existing_Folder','Existing folder');
+define('lang_Confirm_Folder_del','Are you sure to delete the folder and all the elements in it?');
+define('lang_Return_Files_List','Return to files list');
 define('lang_Preview','Xem trước');
 define('lang_Download','Tải về');
-define('lang_Insert_Folder_Name','Chèn tên thư mục:');
-define('lang_Root','Thư mục gốc');
+define('lang_Insert_Folder_Name','Tên thư mục sẽ tạo:');
+define('lang_Root','root');
 define('lang_Rename','Đổi tên');
-define('lang_Back','trở lại');
-define('lang_View','Xem');
-define('lang_View_list','Xem danh sách');
-define('lang_View_columns_list','Xem dạng cột');
-define('lang_View_boxes','Xem dạng hộp');
-define('lang_Toolbar','Thanh công cụ');
-define('lang_Actions','Hành động');
-define('lang_Rename_existing_file','Tệp đã tồn tại');
-define('lang_Rename_existing_folder','Tệp đã tồn tại');
-define('lang_Empty_name','Tên rỗng');
-define('lang_Text_filter','bộ lọc văn bản');
-define('lang_Swipe_help','Xóa vĩnh viễn tên tập tin/thư mục để hiển thị tùy chọn');
-define('lang_Upload_base','Tải lên cơ bản');
-define('lang_Upload_java','JAVA tải lên (kích thước lớn tập tin)');
-define('lang_Upload_java_help',"Nếu các Java Applet không khả dụng, 1. có chắc rằng  Java đã được cài đặt, nếu chưa thì hãy tải về theo liên kết này <a href='http://java.com/en/download/'> [ ]</a> 2. đảm bảo rằng không có gì bị chặn bởi tường lửa của bạn");
-define('lang_Upload_base_help',"Kéo & thả tập tin hoặc nhấp vào trong khu vực trên (trình duyệt hiện đại) và chọn tệp. Khi tải lên hoàn tất, nhấp vào nút 'Trở về danh sách tập tin'.");
-define('lang_Type_dir','Thư mục');
+define('lang_Back','back');
+define('lang_View','View');
+define('lang_View_list','Hiển thị theo danh sách');
+define('lang_View_columns_list','HIển thị theo dạng cột');
+define('lang_View_boxes','Hiển thị theo dạng ô');
+define('lang_Toolbar','Toolbar');
+define('lang_Actions','Actions');
+define('lang_Rename_existing_file','The file is already existing');
+define('lang_Rename_existing_folder','The folder is already existing');
+define('lang_Empty_name','The name is empty');
+define('lang_Text_filter','Tên tập tin');
+define('lang_Swipe_help','Swipe the name of file/folder to show options');
+define('lang_Upload_base','Tải lên thông thường');
+define('lang_Upload_java','Tải lên với JAVA (Cho tập tin có kích thước lớn)');
+define('lang_Upload_java_help',"If the Java Applet doesn't load, 1. make sure you have Java installed, otherwise <a href='http://java.com/en/download/'>[download link]</a>   2. make sure nothing is blocked by your firewall");
+define('lang_Upload_base_help',"Kéo thả tập tin hoặc kích chuột vào khung bên trên (các trình duyệt hiện đại) để chọn các tập tin cần tải lên. Khi hoàn tất, kích vào nút 'Trở về danh sách tập tin'.");
+define('lang_Type_dir','dir');
 define('lang_Type','Loại tập tin');
-define('lang_Dimension','Mở rộng');
+define('lang_Dimension','Dimension');
 define('lang_Size','Kích thước');
-define('lang_Date','Ngày');
+define('lang_Date','Ngày tháng');
 define('lang_Filename','Tên tập tin');
-define('lang_Operations','Hoạt động');
+define('lang_Operations','Operations');
 define('lang_Date_type','y-m-d');
 define('lang_OK','Đồng ý');
-define('lang_Cancel','Hủy bỏ');
-define('lang_Sorting','sắp xếp');
-define('lang_Show_url','Hiển thị URL');
-define('lang_Extract','Giải nén ở đây');
-define('lang_File_info','thông tin tập tin');
-define('lang_Edit_image','Chỉnh sửa hình ảnh');
-define('lang_Duplicate','Nhân bản');
-define('lang_Folders', 'Thư mục');
-define('lang_Copy','Sao chép');
-define('lang_Cut','Cắt');
-define('lang_Paste','Dán');
+define('lang_Cancel','Huỷ bỏ');
+define('lang_Sorting','Sắp xếp theo');
+define('lang_Show_url','Show URL');
+define('lang_Extract','Extract here');
+define('lang_File_info','file info');
+define('lang_Edit_image','Edit image');
+define('lang_Duplicate','Duplicate');
+define('lang_Folders', 'Folders');
+define('lang_Copy','Copy');
+define('lang_Cut','Cut');
+define('lang_Paste','Paste');
 define('lang_CB', 'CB'); // clipboard
-define('lang_Paste_Here','Dán vào thư mục này');
-define('lang_Paste_Confirm','Bạn có chắc bạn muốn dán vào thư mục này không? Điều này sẽ ghi đè lên tất cả tập tin/thư mục có sẵn trước đó.');
-define('lang_Paste_Failed','Thất bại trong việc dán tập tin');
-define('lang_Clear_Clipboard','Xóa bộ nhớ tạm');
-define('lang_Clear_Clipboard_Confirm','Bạn có chắc bạn muốn xóa bộ nhớ tạm không?');
-define('lang_Files_ON_Clipboard','Không có tệp vào bộ nhớ tạm.');
-define('lang_Copy_Cut_Size_Limit','Các tập tin/thư mục được chọn là quá lớn %s. Giới hạn: %d MB/lần'); // %s = cut or copy
-define('lang_Copy_Cut_Count_Limit','Bạn đã chọn tập tin/thư mục nhiều hơn %s. Giới hạn: %d tập tin/lần'); // %s = cut or copy
-define('lang_Copy_Cut_Not_Allowed','Bạn không được phép với  %s các tập tin.'); // %s(1) = cut or copy, %s(2) = files or folders
-define('lang_Aviary_No_Save', 'Không thể lưu hình ảnh');
-define('lang_Zip_No_Extract', 'Không thể giải nén. Tệp có thể bị hỏng.');
-define('lang_Zip_Invalid', 'Phần mở rộng này không được hỗ trợ. Hợp lệ: zip, gz, tar.');
-define('lang_Dir_No_Write', 'Thư mục bạn đã chọn không thể ghi được.');
-define('lang_Function_Disabled', '%s  chức năng đã bị vô hiệu hoá bởi các máy chủ.'); // %s = cut or copy
-define('lang_File_Permission', 'Quyền truy cập đến tập tin');
-define('lang_File_Permission_Not_Allowed', 'Thay đổi %s quyền không được phép.'); // %s = files or folders
+define('lang_Paste_Here','Dán vào thư mục hiện tại');
+define('lang_Paste_Confirm','Are you sure you want to paste to this directory? This will overwrite existing files/folders if encountered any.');
+define('lang_Paste_Failed','Failed to paste file(s)');
+define('lang_Clear_Clipboard','Xoá bộ nhớ tạm');
+define('lang_Clear_Clipboard_Confirm','Are you sure you want to clear the clipboard?');
+define('lang_Files_ON_Clipboard','There are files on the clipboard.');
+define('lang_Copy_Cut_Size_Limit','The selected files/folders are too big to %s. Limit: %d MB/operation'); // %s = cut or copy
+define('lang_Copy_Cut_Count_Limit','You selected too many files/folders to %s. Limit: %d files/operation'); // %s = cut or copy
+define('lang_Copy_Cut_Not_Allowed','You are not allowed to %s files.'); // %s(1) = cut or copy, %s(2) = files or folders
+define('lang_Aviary_No_Save', 'Could not save image');
+define('lang_Zip_No_Extract', 'Could not extract. File might be corrupt.');
+define('lang_Zip_Invalid', 'This extension is not supported. Valid: zip, gz, tar.');
+define('lang_Dir_No_Write', 'The directory you selected is not writable.');
+define('lang_Function_Disabled', 'The %s function has been disabled by the server.'); // %s = cut or copy
+define('lang_File_Permission', 'File permission');
+define('lang_File_Permission_Not_Allowed', 'Changing %s permissions are not allowed.'); // %s = files or folders
 define('lang_File_Permission_Recursive', 'Apply recursively?');
-define('lang_File_Permission_Wrong_Mode', "Thay đổi cấp phép không chính xác.");
-define('lang_User', 'Người dùng');
-define('lang_Group', 'Nhóm');
-define('lang_Yes', 'Có');
-define('lang_No', 'Không');
-define('lang_Lang_Not_Found', 'Không thể tìm thấy ngôn ngữ.');
-define('lang_Lang_Change', 'Thay đổi ngôn ngữ');
-define('lang_File_Not_Found', 'Không thể tìm thấy các tập tin.');
-define('lang_File_Open_Edit_Not_Allowed', 'Bạn không được phép để %s tập tin này.'); // %s = open or edit
-define('lang_Edit', 'Chỉnh sửa');
-define('lang_Edit_File', "Chỉnh sửa nội dung của tập tin");
-define('lang_File_Save_OK', "Tệp được lưu thành công.");
-define('lang_File_Save_Error', "Đã có lỗi trong khi lưu tệp.");
-define('lang_New_File','Tập tin mới');
-define('lang_No_Extension','Bạn phải thêm một phần mở rộng tập tin.'); 
-define('lang_Valid_Extensions','Tiện ích mở rộng hợp lệ: %s'); // %s = txt,log etc.
-
+define('lang_File_Permission_Wrong_Mode', "The supplied permission mode is incorrect.");
+define('lang_User', 'User');
+define('lang_Group', 'Group');
+define('lang_Yes', 'Yes');
+define('lang_No', 'No');
+define('lang_Lang_Not_Found', 'Could not find the language.');
+define('lang_Lang_Change', 'Change the language');
+define('lang_File_Not_Found', 'Could not find the file.');
+define('lang_File_Open_Edit_Not_Allowed', 'You are not allowed to %s this file.'); // %s = open or edit
+define('lang_Edit', 'Edit');
+define('lang_Edit_File', "Edit file's content");
+define('lang_File_Save_OK', "File successfully saved.");
+define('lang_File_Save_Error', "There was an error while saving the file.");
+define('lang_New_File','Tạo tập tin mới');
+define('lang_No_Extension','You have to add a file extension.'); 
+define('lang_Valid_Extensions','Valid extensions: %s'); // %s = txt,log etc.
 ?>
