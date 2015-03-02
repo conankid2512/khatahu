@@ -156,7 +156,7 @@ $previewable_text_file_exts_no_prettify = array('txt', 'log');
 $editable_text_file_exts = array('txt', 'log', 'xml','html','css','htm','js');
 
 // Preview with Google Documents
-$googledoc_enabled = TRUE;
+$googledoc_enabled = FALSE;
 $googledoc_file_exts = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx');
 
 // Preview with Viewer.js
@@ -185,7 +185,7 @@ $ext = array_merge($ext_img, $ext_file, $ext_misc, $ext_video,$ext_music); //all
 /******************
  * AVIARY config
 *******************/
-$aviary_active  = TRUE;
+$aviary_active  = FALSE;
 $aviary_apiKey  = "dvh8qudbp6yx2bnp";
 $aviary_secret  = "m6xaym5q42rpw433";
 // Add or modify the Aviary options below as needed - they will be json encoded when added to the configuration so arrays can be utilized as needed

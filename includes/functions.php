@@ -116,8 +116,41 @@ function hienThiTopMenu() {
 function topBaiViet() {
     global $csdl;
     $xemNhieu_sql = "SELECT * FROM baiViet WHERE ngayDang > DATE_SUB(NOW(), INTERVAL 30 DAY) ORDER BY luotXem DESC LIMIT 5";
+    $xemNhieu = $csdl->query($xemNhieu_sql);
+    if($xemNhieu) {
+        $i = 0;
+        while($xemNhieu_ketQua = $xemNhieu->fetch_array(MYSQLI_ASSOC)) {
+            $topBaiViet["xemNhieu"][$i] = $xemNhieu_ketQua;
+            $timeago = explode(" ",$topBaiViet["xemNhieu"][$i]["ngayDang"]);
+            $topBaiViet["xemNhieu"][$i]["timeago"] = $timeago[0]."T".$timeago[1]."+07:00";
+            $i++;
+        }
+    }
+    
     $binhLuanNhieu_sql = "SELECT * FROM baiViet WHERE ngayDang > DATE_SUB(NOW(), INTERVAL 30 DAY) ORDER BY luotBinhLuan DESC LIMIT 5";
+    $binhLuanNhieu = $csdl->query($binhLuanNhieu_sql);
+    if($binhLuanNhieu) {
+        $i = 0;
+        while($binhLuanNhieu_ketQua = $binhLuanNhieu->fetch_array(MYSQLI_ASSOC)) {
+            $topBaiViet["binhLuanNhieu"][$i] = $binhLuanNhieu_ketQua;
+            $timeago = explode(" ",$topBaiViet["binhLuanNhieu"][$i]["ngayDang"]);
+            $topBaiViet["binhLuanNhieu"][$i]["timeago"] = $timeago[0]."T".$timeago[1]."+07:00";
+            $i++;
+        }
+    }
+    
     $moiNhat_sql = "SELECT * FROM baiViet ORDER BY ngayDang DESC LIMIT 5";
+    $moiNhat = $csdl->query($moiNhat_sql);
+    if($moiNhat) {
+        $i = 0;
+        while($moiNhat_ketQua = $moiNhat->fetch_array(MYSQLI_ASSOC)) {
+            $topBaiViet["moiNhat"][$i] = $moiNhat_ketQua;
+            $timeago = explode(" ",$topBaiViet["moiNhat"][$i]["ngayDang"]);
+            $topBaiViet["moiNhat"][$i]["timeago"] = $timeago[0]."T".$timeago[1]."+07:00";
+            $i++;
+        }
+    }
+    return $topBaiViet;
 }
 
 
