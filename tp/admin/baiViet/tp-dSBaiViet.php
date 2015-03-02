@@ -37,8 +37,12 @@ if(!empty($dSBaiViet_data)) {
                             <th>#</th>
                             <th>Tên bài viết</th>
                             <th>Tác giả</th>
-                            <th>Ngày đăng</th>
-                            <th>Trạng thái</th>
+                            <th>Ngày viết</th>
+                            <?php
+                            if ($dangNhap->kiemTraQuyenHan() == 3) {
+                                echo '<th><i class="fa fa-task"></i> Kiểm duyệt</th>';
+                            }
+                            ?>
                             <th><i class="fa fa-edit"></i> Sửa</th>
                             <th><i class="fa fa-times"></i> Xóa</th>
                         </tr>
@@ -50,7 +54,7 @@ if(!empty($dSBaiViet_data)) {
                             <td><?php echo $baiViet_data["linkBaiViet"]; ?></td>
                             <td><?php echo $baiViet_data["tenTacGia"]; ?></td>
                             <td><?php echo $baiViet_data["ngayDang"]; ?></td>
-                            <td><?php echo tenTrangThai($baiViet_data["trangThai"]); ?></td>
+                            <?php echo $baiViet_data["linkKiemDuyet"]; ?>
                             <td><?php echo $baiViet_data["linkEdit"]; ?></td>
                             <td><?php echo $baiViet_data["linkDel"]; ?></i></td>
                         </tr>
