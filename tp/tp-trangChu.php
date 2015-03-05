@@ -11,7 +11,7 @@
         ?>
               <div class="col-xs-16 col-sm-8  wow fadeInLeft animated science" data-wow-delay="0.5s" data-wow-offset="130">
                 <div class="main-title-outer pull-left">
-                  <div class="main-title"><?php echo $theLoai["tenTheLoai"]; ?></div>
+                  <div class="main-title"><a href="<?php echo layTuyChon("urlChinh")."?chucnang=theLoai&maTheLoai=".$theLoai["maTheLoai"];?>" ><?php echo $theLoai["tenTheLoai"]; ?></a></div>
                   <div class="span-outer"><span class="pull-right text-danger last-update"><span class="ion-android-data icon"></span><time class="timeago" datetime="<?php echo $theLoai["baiViet"][0]["timeago"]; ?>"><?php echo $theLoai["baiViet"][0]["ngayDang"]; ?> GMT+7</time></span> </div>
                 </div>
                 <div class="row">

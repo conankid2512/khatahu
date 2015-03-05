@@ -1450,6 +1450,7 @@ none;
 }
 .opinion {
 	margin-bottom: 20px;
+    width: 100%;
 }
 .comment-form {
 	margin-top: 10px;
@@ -2200,4 +2201,7 @@ a.dropdown-toggle {
 
 #main {
 	min-height:950px
+}
+.main-title>a {
+    color: #fff;
 }

@@ -98,14 +98,14 @@ function hienThiTopMenu() {
             $secondLevel_sql = "SELECT maTheLoai, tenTheLoai FROM theloai WHERE maTheLoaiCha = ".$topLevel_ketQua["maTheLoai"]." AND tTMenu > 0 ORDER BY tTMenu ASC, tenTheLoai ASC";
             $secondLevel = $csdl->query($secondLevel_sql);
             if($secondLevel && $secondLevel->num_rows > 0) {
-                $topMenu .= "<li class=\"dropdown\"><a class=\"dropdown-toggle\" href=\"http://google.com\">".$topLevel_ketQua["tenTheLoai"]."</a><span data-toggle=\"dropdown\" class=\"dropdown-toggle ion-ios7-arrow-down nav-icn khatahu\"></span>";
+                $topMenu .= "<li class=\"dropdown\"><a class=\"dropdown-toggle\" href=\"".layTuyChon("urlChinh")."?chucnang=theLoai&maTheLoai=".$topLevel_ketQua["maTheLoai"]."\">".$topLevel_ketQua["tenTheLoai"]."</a><span data-toggle=\"dropdown\" class=\"dropdown-toggle ion-ios7-arrow-down nav-icn khatahu\"></span>";
                 $topMenu .= "<ul class=\"dropdown-menu text-capitalize\" role=\"menu\">";
                 while($secondLevel_ketQua = $secondLevel->fetch_array(MYSQLI_ASSOC)) {
-                    $topMenu .= "<li><a href=\"javascript:void(0)\"><span class=\"ion-ios7-arrow-right nav-sub-icn\"></span>".$secondLevel_ketQua["tenTheLoai"]."</a></li>";
+                    $topMenu .= "<li><a href=\"".layTuyChon("urlChinh")."?chucnang=theLoai&maTheLoai=".$secondLevel_ketQua["maTheLoai"]."\"><span class=\"ion-ios7-arrow-right nav-sub-icn\"></span>".$secondLevel_ketQua["tenTheLoai"]."</a></li>";
                 }
                 $topMenu .= "</ul></li>";
             } else {
-                $topMenu .= "<li><a href=\"index.html\">".$topLevel_ketQua["tenTheLoai"]."</a></li>";
+                $topMenu .= "<li><a href=\"".layTuyChon("urlChinh")."?chucnang=theLoai&maTheLoai=".$topLevel_ketQua["maTheLoai"]."\">".$topLevel_ketQua["tenTheLoai"]."</a></li>";
             }
         }
     }
@@ -153,6 +153,19 @@ function topBaiViet() {
     return $topBaiViet;
 }
 
+//Hàm Gravatar
+function layGravatar( $email, $s = 64, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
+    $url = 'http://www.gravatar.com/avatar/';
+    $url .= md5( strtolower( trim( $email ) ) );
+    $url .= "?s=$s&d=$d&r=$r";
+    if ( $img ) {
+        $url = '<img src="' . $url . '"';
+        foreach ( $atts as $key => $val )
+            $url .= ' ' . $key . '="' . $val . '"';
+        $url .= ' />';
+    }
+    return $url;
+}
 
 /************************/
 /*Admin Function Section*/

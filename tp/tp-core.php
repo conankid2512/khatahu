@@ -10,7 +10,7 @@ if (!defined("KHATAHU")) {
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Globalnews - Home</title>
+<title><?php echo $tieuDe; ?></title>
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <!-- bootstrap styles-->
@@ -44,7 +44,7 @@ if (!defined("KHATAHU")) {
     <!-- header start -->
     <div class="container header">
       <div class="row">
-        <div class="col-sm-5 col-md-5 wow fadeInUpLeft animated"><a class="navbar-brand" href="index.html">globalnews</a></div>
+        <div class="col-sm-5 col-md-5 wow fadeInUpLeft animated"><a class="navbar-brand" href="<?php echo layTuyChon("urlChinh"); ?>">globalnews</a></div>
         <div class="col-sm-11 col-md-11 hidden-xs text-right"><img src="images/ads/468-60-ad.gif" width="468" height="60" alt=""/></div>
       </div>
     </div>
@@ -121,7 +121,8 @@ if (!defined("KHATAHU")) {
         <div class="row">
           <div class="col-sm-16">
             <div class="row">
-              <div data-wow-delay="0.5s" data-wow-offset="10">© 2014 GLOBALNEWS THEME - ALL RIGHTS RESERVED</div>
+              <div data-wow-delay="0.5s" data-wow-offset="10">© Copyright 2014 <?php echo layTuyChon("tenWebsite"); ?>, All rights reserved<br />
+® <?php echo layTuyChon("tenWebsite"); ?> giữ bản quyền nội dung trên website này.</div>
             </div>
           </div>
         </div>
@@ -133,7 +134,7 @@ if (!defined("KHATAHU")) {
 <!-- wrapper end --> 
 
 <!-- jQuery --> 
-<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.min.js"></script>
 <!--jQuery easing--> 
 <script src="js/jquery.easing.1.3.js"></script>
 <!--jQuery timeago--> 
@@ -141,7 +142,9 @@ if (!defined("KHATAHU")) {
 <!-- bootstrab js --> 
 <script src="js/bootstrap.min.js"></script> 
 <!--wow animation--> 
-<script src="js/wow.min.js"></script> 
+<script src="js/wow.min.js"></script>
+<!-- Holder.js --> 
+<script src="js/holder.min.js"></script> 
 <!-- calendar--> 
 <script src="js/jquery.pickmeup.js"></script> 
 <!-- go to top --> 
