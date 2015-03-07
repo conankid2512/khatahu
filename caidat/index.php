@@ -35,8 +35,8 @@ if(isset($_POST["dbHost"])) {
     $cauTruc_sql = file_get_contents("./caidat.sql");
     
     if($csdl->server_version < 50500) {
-        die('Yêu cầu Mysql phiên bản 5.6 trở lên!');
-    } elseif($csdl->server_version < 50500) {
+        die('Yêu cầu Mysql phiên bản 5.5 trở lên!');
+    } elseif($csdl->server_version < 50600) {
         $cauTruc_sql = str_replace("vietnamese_ci","general_ci",$cauTruc_sql);
     }
     
