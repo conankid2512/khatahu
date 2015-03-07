@@ -28,6 +28,8 @@ if(isset($_POST["dbHost"])) {
     if ($csdl->connect_error) {
         die('Connect Error: ' . $mysqli->connect_error);
     }
+    $csdl->set_charset('utf8');
+    $csdl->query("SET time_zone = '+07:00'");
     
     if(!file_exists("./caidat.sql")) {
         die('Không tìm thấy file caidat.sql');
