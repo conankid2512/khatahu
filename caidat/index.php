@@ -38,6 +38,7 @@ if(isset($_POST["dbHost"])) {
         die('Yêu cầu Mysql phiên bản 5.5 trở lên!');
     } elseif($csdl->server_version < 50600) {
         $cauTruc_sql = str_replace("vietnamese_ci","general_ci",$cauTruc_sql);
+        $cauTruc_sql = str_replace("InnoDB","MyISAM",$cauTruc_sql);
     }
     
     if(!file_exists("../includes/csdl.tp.php")) {
