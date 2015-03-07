@@ -19,8 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `aptech`
 --
-CREATE DATABASE IF NOT EXISTS `#dbname` DEFAULT CHARACTER SET utf8 COLLATE utf8_vietnamese_ci;
-USE `#dbname`;
+CREATE DATABASE IF NOT EXISTS `#dbname#` DEFAULT CHARACTER SET utf8 COLLATE utf8_vietnamese_ci;
+USE `#dbname#`;
 
 -- --------------------------------------------------------
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `baiviet` (
   `trangThai` tinyint(4) NOT NULL COMMENT 'Nháp, Chờ duyệt, Đã duyệt',
   `ngayDang` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `ngayKiemDuyet` timestamp NULL DEFAULT NULL COMMENT 'Ngày được sếp duyệt bài'
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+)#engine#AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `binhluan` (
   `tenNguoiGui` varchar(255) CHARACTER SET utf8 NOT NULL,
   `emailGui` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT 'Email của độc giả',
   `trangThai` tinyint(1) NOT NULL COMMENT 'Hiển thị/Không hiển thi (Do toà soan quyết định)'
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+)#engine#AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Triggers `binhluan`
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `nhanvien` (
   `email` varchar(255) CHARACTER SET utf8 NOT NULL,
   `quyenHan` tinyint(4) NOT NULL,
   `moTaNgan` text CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+)#engine#AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `phanloai` (
 `sTT` int(10) unsigned NOT NULL,
   `maBaiViet` int(10) unsigned NOT NULL,
   `maTheLoai` int(10) unsigned DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+)#engine#AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `quangcao` (
   `ngayBatDau` date NOT NULL,
   `ngayKetThuc` date NOT NULL,
   `trangThai` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+)#engine#DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `theloai` (
   `maTheLoaiCha` int(10) unsigned DEFAULT NULL,
   `tTMenu` int(10) NOT NULL DEFAULT '0',
   `tTTrangChu` int(10) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+)#engine#AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `theodoitruycap` (
 `soThuTu` int(10) unsigned NOT NULL,
   `maBaiViet` int(10) unsigned NOT NULL,
   `tGTruyCap` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời điểm ghi nhận truy cập'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+)#engine#DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
@@ -169,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `tuychon` (
 `maTuyChon` int(10) unsigned NOT NULL,
   `tenTuyChon` varchar(32) CHARACTER SET utf8 NOT NULL,
   `noiDung` text CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+)#engine#AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Indexes for dumped tables
