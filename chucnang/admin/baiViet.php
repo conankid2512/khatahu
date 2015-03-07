@@ -279,7 +279,7 @@ if($_GET["chucnang"] == "xoaBaiViet" && $maBaiViet_data) {
     $quyenXoa = 0;
     
     //Kiểm tra quyền xóa
-    if($dangNhap->kiemTraQuyenHan(0) < 2) { //Phóng viên
+    if($dangNhap->kiemTraQuyenHan(0) == 1) { //Phóng viên
         if($maBaiViet_data["maTacGia"] != $_SESSION["dangNhap"]["maNhanVien"]) { //Phóng viên khác
             $baoLoi = "Bạn chỉ có thể xóa bài viết của mình!";
         } elseif ($maBaiViet_data["maTacGia"] == $_SESSION["dangNhap"]["maNhanVien"] && $maBaiViet_data["trangThai"] == 2) { //Phóng viên tác giả, bài viết đã duyệt
@@ -291,7 +291,7 @@ if($_GET["chucnang"] == "xoaBaiViet" && $maBaiViet_data) {
     } else { //BTV, QTV
         if($maBaiViet_data["maTacGia"] == $_SESSION["dangNhap"]["maNhanVien"]) { //Admin, có quyền tác giả
             $quyenXoa = 1;
-        } elseif($maBaiViet_data["trangThai"] < 1) { //Admin, không có quyền tác giả, bài viết đang lưu nháp hoặc bị từ chối
+        } elseif($maBaiViet_data["trangThai"] == 1 || $maBaiViet_data["trangThai"] == 4) { //Admin, không có quyền tác giả, bài viết đang lưu nháp hoặc bị từ chối
             $baoLoi = "Bạn không thể xóa bài viết đang lưu nháp của tác giả khác!";
         } else { //Admin, không có quyền tác giả, bài viết chờ duyệt / đã duyệt
             $quyenXoa = 1;
@@ -316,12 +316,11 @@ if($_GET["chucnang"] == "xoaBaiViet" && $maBaiViet_data) {
 /******************************/
 
 if($_GET["chucnang"] == "dSBaiViet" || $_GET["chucnang"] == "xoaBaiViet" || ($_GET["chucnang"] == "kiemDuyetBaiViet" && !isset($_GET["maBaiViet"])) ) {
-    if($dangNhap->kiemTraQuyenHan(0) < 2) {
-        $dSBaiViet_sql = "SELECT bv.*, tg.tenDangNhap as tenTacGia, kd.tenDangNhap as tenKiemDuyet FROM `baiviet` bv LEFT JOIN nhanvien tg ON bv.maTacGia = tg.maNhanVien LEFT JOIN nhanvien kd ON bv.maKiemDuyet = kd.maNhanVien WHERE bv.`maTacGia` = ".$_SESSION["dangNhap"]["maNhanVien"];
-    } elseif($_GET["chucnang"] == "kiemDuyetBaiViet") {
-        $dSBaiViet_sql = "SELECT bv.*, tg.tenDangNhap as tenTacGia, kd.tenDangNhap as tenKiemDuyet FROM `baiviet` bv LEFT JOIN nhanvien tg ON bv.maTacGia = tg.maNhanVien LEFT JOIN nhanvien kd ON bv.maKiemDuyet = kd.maNhanVien WHERE `trangThai` = 1";
-    } else {
-        $dSBaiViet_sql = "SELECT bv.*, tg.tenDangNhap as tenTacGia, kd.tenDangNhap as tenKiemDuyet FROM `baiviet` bv LEFT JOIN nhanvien tg ON bv.maTacGia = tg.maNhanVien LEFT JOIN nhanvien kd ON bv.maKiemDuyet = kd.maNhanVien WHERE `maTacGia` = ".$_SESSION["dangNhap"]["maNhanVien"]." OR `trangThai` > 0";
+    $dSBaiViet_sql = "SELECT bv.*, tg.tenDangNhap as tenTacGia, kd.tenDangNhap as tenKiemDuyet FROM `baiviet` bv LEFT JOIN nhanvien tg ON bv.maTacGia = tg.maNhanVien LEFT JOIN nhanvien kd ON bv.maKiemDuyet = kd.maNhanVien WHERE bv.`maTacGia` = ".$_SESSION["dangNhap"]["maNhanVien"]." ORDER BY ngayDang DESC";
+    if($_GET["chucnang"] == "kiemDuyetBaiViet" && $dangNhap->kiemTraQuyenHan(0) >= 2) {
+        $dSBaiViet_sql = "SELECT bv.*, tg.tenDangNhap as tenTacGia, kd.tenDangNhap as tenKiemDuyet FROM `baiviet` bv LEFT JOIN nhanvien tg ON bv.maTacGia = tg.maNhanVien LEFT JOIN nhanvien kd ON bv.maKiemDuyet = kd.maNhanVien WHERE `trangThai` = 1 ORDER BY ngayDang DESC";
+    } elseif($dangNhap->kiemTraQuyenHan(0) >= 2) {
+        $dSBaiViet_sql = "SELECT bv.*, tg.tenDangNhap as tenTacGia, kd.tenDangNhap as tenKiemDuyet FROM `baiviet` bv LEFT JOIN nhanvien tg ON bv.maTacGia = tg.maNhanVien LEFT JOIN nhanvien kd ON bv.maKiemDuyet = kd.maNhanVien WHERE `maTacGia` = ".$_SESSION["dangNhap"]["maNhanVien"]." OR `trangThai` > 0 ORDER BY ngayDang DESC";
     }
     $dSBaiViet = $csdl->query($dSBaiViet_sql);
     $i = 0;
@@ -347,6 +346,5 @@ if($_GET["chucnang"] == "dSBaiViet" || $_GET["chucnang"] == "xoaBaiViet" || ($_G
         $baoLoi = "Danh sách bài viết rỗng!";
     }
 }
-
 
 ?>

@@ -4,9 +4,6 @@ if (!defined("ADMIN")) {
     exit();
 }
 ?>
-<?php
-if(!$maTheLoai_data) $baoLoi = "Mã thể loại không tồn tại";
-?>
 <h1 class="margin-bottom-15">Thêm thể loại</h1>
 <div class="row">
     <div class="col-md-12">

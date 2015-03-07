@@ -149,7 +149,7 @@ fieldset
 
 #inputs input
 {
-    background: #f1f1f1 url(../img/login-sprite.png) no-repeat;
+    background: #f1f1f1 url(../images/login-sprite.png) no-repeat;
     padding: 15px 15px 15px 30px;
     margin: 0 0 10px 0;
     width: 353px; /* 353 + 2 + 45 = 400 */

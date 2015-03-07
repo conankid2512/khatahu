@@ -113,4 +113,27 @@ $cauHinhChucNang["dSTheLoai"]["tpFile"] = "theLoai/tp-dSTheLoai.php";
 $cauHinhChucNang["dSTheLoai"]["activeMenu"] = "suaXoaTheLoai";
 $cauHinhChucNang["dSTheLoai"]["subOpen"] = "theLoai";
 
+/************************/
+/*Cụm chức năng thể loại*/
+/************************/
+
+//Chức năng kiểm duyệt bình luận
+$cauHinhChucNang["kiemDuyetBinhLuan"]["functionFile"] = "binhLuan.php";
+$cauHinhChucNang["kiemDuyetBinhLuan"]["tpFile"] = "baiViet/tp-dSBinhLuan.php";
+$cauHinhChucNang["kiemDuyetBinhLuan"]["activeMenu"] = "quanLyBinhLuan";
+$cauHinhChucNang["kiemDuyetBinhLuan"]["subOpen"] = "baiViet";
+
+//Chức năng xóa bình luận
+$cauHinhChucNang["xoaBinhLuan"]["functionFile"] = "binhLuan.php";
+$cauHinhChucNang["xoaBinhLuan"]["tpFile"] = "baiViet/tp-dSBinhLuan.php";
+$cauHinhChucNang["xoaBinhLuan"]["activeMenu"] = "quanLyBinhLuan";
+$cauHinhChucNang["xoaBinhLuan"]["subOpen"] = "baiViet";
+
+//Chức năng danh sách bình luận
+$cauHinhChucNang["dSBinhLuan"]["functionFile"] = "binhLuan.php";
+$cauHinhChucNang["dSBinhLuan"]["tpFile"] = "baiViet/tp-dSBinhLuan.php";
+$cauHinhChucNang["dSBinhLuan"]["activeMenu"] = "quanLyBinhLuan";
+$cauHinhChucNang["dSBinhLuan"]["subOpen"] = "baiViet";
+
+
 ?>

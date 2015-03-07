@@ -15,3 +15,6 @@ $cauHinhChucNang["baiViet"]["tpFile"] = "tp-baiViet.php";
 $cauHinhChucNang["theLoai"]["functionFile"] = "theLoai.php";
 $cauHinhChucNang["theLoai"]["tpFile"] = "tp-theLoai.php";
 
+$cauHinhChucNang["timKiem"]["functionFile"] = "timKiem.php";
+$cauHinhChucNang["timKiem"]["tpFile"] = "tp-timKiem.php";
+

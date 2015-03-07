@@ -4,7 +4,7 @@ if (!defined("ADMIN")) {
     exit();
 }
 ?>
-<h1 class="margin-bottom-15">Quản lý bài viết</h1>
+<h1 class="margin-bottom-15">Quản lý bình luận</h1>
 <div class="row">
     <div class="col-md-12">
     <?php if(!empty($baoLoi)) {
@@ -24,39 +24,37 @@ if (!defined("ADMIN")) {
     </div>
 </div>
 <?php
-if(!empty($dSBaiViet_data)) {
+if(!empty($dSBinhLuan_data) && $dangNhap->kiemTraQuyenHan() == 3) {
 ?>
 <div class="row">
     <div class="col-md-12 margin-bottom-15">
         <div class="panel panel-primary">
-            <div class="panel-heading">Danh sách bài viết</div>
+            <div class="panel-heading">Danh sách bình luận</div>
                 <div class="panel-body">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Nội dung bình luận</th>
                             <th>Tên bài viết</th>
+                            <th>Trạng thái</th>
                             <th>Tác giả</th>
                             <th>Ngày viết</th>
-                            <?php
-                            if ($dangNhap->kiemTraQuyenHan() == 3) {
-                                echo '<th><i class="fa fa-tasks"></i> Kiểm duyệt</th>';
-                            }
-                            ?>
-                            <th><i class="fa fa-edit"></i> Sửa</th>
+                            <th><i class="fa fa-tasks"></i> Kiểm duyệt</th>
                             <th><i class="fa fa-times"></i> Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($dSBaiViet_data as $baiViet_data) { ?>
+                    <?php foreach($dSBinhLuan_data as $binhLuan_data) { ?>
                         <tr>
-                            <td><input type="checkbox" name="idDaChon[]" value="<?php echo $baiViet_data["maBaiViet"]; ?>" /></td>
-                            <td><?php echo $baiViet_data["linkBaiViet"]; ?></td>
-                            <td><?php echo $baiViet_data["tenTacGia"]; ?></td>
-                            <td><?php echo $baiViet_data["ngayDang"]; ?></td>
-                            <?php echo $baiViet_data["linkKiemDuyet"]; ?>
-                            <td><?php echo $baiViet_data["linkEdit"]; ?></td>
-                            <td><?php echo $baiViet_data["linkDel"]; ?></i></td>
+                            <td><input type="checkbox" name="idDaChon[]" value="<?php echo $binhLuan_data["maBinhLuan"]; ?>" /></td>
+                            <td><?php echo $binhLuan_data["noiDung"]; ?></td>
+                            <td><?php echo $binhLuan_data["tenBaiViet"]; ?></td>
+                            <td><?php echo $binhLuan_data["trangThai"]; ?></td>
+                            <td><?php echo $binhLuan_data["emailGui"]; ?></td>
+                            <td><?php echo $binhLuan_data["ngayDang"]; ?></td>
+                            <td><?php echo $binhLuan_data["linkDuyet"]; ?></td>
+                            <td><?php echo $binhLuan_data["linkDel"]; ?></td>
                         </tr>
                     <?php } ?>
                     </tbody>

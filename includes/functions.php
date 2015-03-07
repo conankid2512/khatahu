@@ -115,6 +115,7 @@ function hienThiTopMenu() {
 //Lấy thông tin top bài viết
 function topBaiViet() {
     global $csdl;
+    $topBaiViet = NULL;
     $xemNhieu_sql = "SELECT * FROM baiViet WHERE ngayDang > DATE_SUB(NOW(), INTERVAL 30 DAY) ORDER BY luotXem DESC LIMIT 5";
     $xemNhieu = $csdl->query($xemNhieu_sql);
     if($xemNhieu) {

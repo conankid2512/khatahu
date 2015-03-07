@@ -1,3 +1,9 @@
+<?php
+if (!defined("KHATAHU")) {
+    echo "Vui lòng liên hệ quản trị viên";
+    exit();
+}
+?>
       <div class="col-md-8 col-sm-8 col-md-offset-4 col-sm-offset-4 wrong-page wow fadeInDown animated">
         <div class="text-center">
           <h1>Chúng tôi chân thành xin lỗi</h1>

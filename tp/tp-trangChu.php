@@ -1,5 +1,12 @@
+<?php
+if (!defined("KHATAHU")) {
+    echo "Vui lòng liên hệ quản trị viên";
+    exit();
+}
+?>
         <div class="row">          
         <?php
+        if(isset($nhomTheLoaiTrangChu)) {
         $i = 0;
         foreach($nhomTheLoaiTrangChu as $theLoai) {
             if($i % 2 == 0) {
@@ -12,13 +19,13 @@
               <div class="col-xs-16 col-sm-8  wow fadeInLeft animated science" data-wow-delay="0.5s" data-wow-offset="130">
                 <div class="main-title-outer pull-left">
                   <div class="main-title"><a href="<?php echo layTuyChon("urlChinh")."?chucnang=theLoai&maTheLoai=".$theLoai["maTheLoai"];?>" ><?php echo $theLoai["tenTheLoai"]; ?></a></div>
-                  <div class="span-outer"><span class="pull-right text-danger last-update"><span class="ion-android-data icon"></span><time class="timeago" datetime="<?php echo $theLoai["baiViet"][0]["timeago"]; ?>"><?php echo $theLoai["baiViet"][0]["ngayDang"]; ?> GMT+7</time></span> </div>
+                  <div class="span-outer"><span class="pull-right text-danger last-update"><span class="ion-clock icon"></span><time class="timeago" datetime="<?php echo $theLoai["baiViet"][0]["timeago"]; ?>"><?php echo $theLoai["baiViet"][0]["ngayDang"]; ?> GMT+7</time></span> </div>
                 </div>
                 <div class="row">
                   <div class="topic col-sm-16"> <a href="<?php echo layTuyChon("urlChinh")."?chucnang=baiViet&maBaiViet=".$theLoai["baiViet"][0]["maBaiViet"];?>"><img class="img-thumbnail" src="<?php echo str_replace("/uploads/source",$_SESSION["baseURL"]."uploads/thumbs/600",$theLoai["baiViet"][0]["hinhNho"]) ; ?>" alt="<?php echo $theLoai["baiViet"][0]["tenBaiViet"]; ?>"/>
                     <h3><?php echo $theLoai["baiViet"][0]["tenBaiViet"]; ?></h3>
                     <div class="text-danger sub-info-bordered ">
-                      <div class="time"><span class="ion-android-data icon"></span><time class="timeago" datetime="<?php echo $theLoai["baiViet"][0]["timeago"]; ?>"><?php echo $theLoai["baiViet"][0]["ngayDang"]; ?> GMT+7</time></div>
+                      <div class="time"><span class="ion-clock icon"></span><time class="timeago" datetime="<?php echo $theLoai["baiViet"][0]["timeago"]; ?>"><?php echo $theLoai["baiViet"][0]["ngayDang"]; ?> GMT+7</time></div>
                       <div class="comments"><span class="ion-chatbubbles icon"></span><?php echo $theLoai["baiViet"][0]["luotBinhLuan"]; ?></div>
                     </div>
                     </a>
@@ -35,7 +42,7 @@
                           <div class="col-lg-13 col-md-12">
                             <h4><?php echo $theLoai["baiViet"][1]["tenBaiViet"]; ?></h4>
                             <div class="text-danger sub-info">
-                              <div class="time"><span class="ion-android-data icon"></span><time class="timeago" datetime="<?php echo $theLoai["baiViet"][1]["timeago"]; ?>"><?php echo $theLoai["baiViet"][1]["ngayDang"]; ?> GMT+7</time></div>
+                              <div class="time"><span class="ion-clock icon"></span><time class="timeago" datetime="<?php echo $theLoai["baiViet"][1]["timeago"]; ?>"><?php echo $theLoai["baiViet"][1]["ngayDang"]; ?> GMT+7</time></div>
                               <div class="comments"><span class="ion-chatbubbles icon"></span><?php echo $theLoai["baiViet"][1]["luotBinhLuan"]; ?></div>
                             </div>
                           </div>
@@ -50,7 +57,7 @@
                           <div class="col-lg-13 col-md-12">
                             <h4><?php echo $theLoai["baiViet"][2]["tenBaiViet"]; ?></h4>
                             <div class="text-danger sub-info">
-                              <div class="time"><span class="ion-android-data icon"></span><time class="timeago" datetime="<?php echo $theLoai["baiViet"][2]["timeago"]; ?>"><?php echo $theLoai["baiViet"][2]["ngayDang"]; ?> GMT+7</time></div>
+                              <div class="time"><span class="ion-clock icon"></span><time class="timeago" datetime="<?php echo $theLoai["baiViet"][2]["timeago"]; ?>"><?php echo $theLoai["baiViet"][2]["ngayDang"]; ?> GMT+7</time></div>
                               <div class="comments"><span class="ion-chatbubbles icon"></span><?php echo $theLoai["baiViet"][2]["luotBinhLuan"]; ?></div>
                             </div>
                           </div>
@@ -84,6 +91,7 @@
             <hr>
           </div>
         <?php
+        }
         }
         ?>        
           <!--wide ad start-->

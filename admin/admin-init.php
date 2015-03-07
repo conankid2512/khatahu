@@ -34,7 +34,7 @@ if(isset($_GET["dangXuat"])) {
 }
 
 //Thực hiện chức năng đăng nhập nếu cần
-if(isset($_POST["tenDangNhap"])) {
+if(isset($_POST["tenDangNhap"]) && isset($_POST["matKhau"])) {
     if (!$dangNhap->kiemTraQuyenHan()) {
         $dangNhap->dangNhap();
     }

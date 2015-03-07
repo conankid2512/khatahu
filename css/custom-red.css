@@ -78,7 +78,7 @@ Author : Webyzona.com
 
 #scrollUp {
 	background-color: #e74c3c;
-	background-image: url("../images/general/top-red.png");
+	background-image: url("../images/top.png");
 	bottom: 20px;
 	right: 20px;
 	width: 38px;    /* Width of image */
@@ -593,7 +593,7 @@ blockquote p {
 	text-indent: 100%;
 	white-space: nowrap;
 	overflow: hidden;
-	background: url('../images/general/logo-red.png') no-repeat;
+	background: url('../images/logo.png') no-repeat;
 	background-size: 100%;
 	padding: 0;
 }

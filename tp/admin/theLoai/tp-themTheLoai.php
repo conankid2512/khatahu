@@ -23,6 +23,9 @@ if (!defined("ADMIN")) {
     } ?>
     </div>
 </div>
+<?php
+if($dangNhap->kiemTraQuyenHan() == 3) {
+?>
 <div class="row">
     <form role="form" id="templatemo-preferences-form" data-toggle="validator" action="" method="POST">
         <div class="row">
@@ -70,3 +73,6 @@ if (!defined("ADMIN")) {
         </div>
     </form>
 </div>
+<?php
+}
+?>

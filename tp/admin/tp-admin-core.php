@@ -54,6 +54,7 @@ if (!defined("ADMIN")) {
 if($dangNhap->kiemTraQuyenHan() >= 2) { //Phần chỉ dành cho quản trị viên - biên tập viên
 ?>              
               <li<?php activeMenu('kiemDuyetBaiViet')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=kiemDuyetBaiViet"><i class="fa fa-tasks"></i>Kiểm duyệt bài viết</a></li>
+              <li<?php activeMenu('quanLyBinhLuan')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=dSBinhLuan"><i class="fa fa-tasks"></i>Quản lý bình luận</a></li>
 <?php
 }
 ?>

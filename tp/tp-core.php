@@ -24,8 +24,8 @@ if (!defined("KHATAHU")) {
 <!-- custom styles -->
 <link href="<?php echo layTuyChon("urlChinh"); ?>css/custom-red.css" rel="stylesheet" id="style">
 <!-- owl carousel styles-->
-<link rel="stylesheet" href="css/owl.carousel.css">
-<link rel="stylesheet" href="css/owl.transitions.css">
+<link rel="stylesheet" href="<?php echo layTuyChon("urlChinh"); ?>css/owl.carousel.css">
+<link rel="stylesheet" href="<?php echo layTuyChon("urlChinh"); ?>css/owl.transitions.css">
 <!-- magnific popup styles -->
 <link rel="stylesheet" href="css/magnific-popup.css">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -56,7 +56,7 @@ if (!defined("KHATAHU")) {
       <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
           <div class="row">
-            <div class="col-sm-16"> <a href="javascript:;" class="toggle-search pull-right"><span class="ion-ios7-search"></span></a>
+            <div class="col-sm-16"> <a href="javascript:;" class="toggle-search pull-right"><span class="ion-ios-search"></span></a>
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
               </div>
@@ -73,8 +73,8 @@ if (!defined("KHATAHU")) {
         
         <div class="search-container ">
           <div class="container">
-            <form action="" method="" role="search">
-              <input id="search-bar" placeholder="Type & Hit Enter.." autocomplete="off">
+            <form action="<?php echo layTuyChon("urlChinh"); ?>?chucnang=timKiem" method="POST" role="search">
+              <input id="search-bar" name="q" placeholder="Nhập từ khóa & nhấn Enter" autocomplete="off">
             </form>
           </div>
         </div>

@@ -37,7 +37,7 @@ if($_GET["chucnang"] == "baiViet") {
                     
                     $_POST["tenNguoiBinhLuan"] = $csdl->real_escape_string($_POST["tenNguoiBinhLuan"]);
                     $_POST["emailBinhLuan"] = $csdl->real_escape_string($_POST["emailBinhLuan"]);
-                    $_POST["noiDungBinhLuan"] = $htmlPurifier->purify($_POST["noiDungBinhLuan"]);
+                    $_POST["noiDungBinhLuan"] = $csdl->real_escape_string($htmlPurifier->purify($_POST["noiDungBinhLuan"]));
                     $_POST["noiDungBinhLuan"] = $csdl->real_escape_string($_POST["noiDungBinhLuan"]);
                     
                     $guiBinhLuan_sql = sprintf("INSERT INTO `binhluan`(`maBaiViet`, `noiDung`, `tenNguoiGui`, `emailGui`, `trangThai`) VALUES (%d,'%s','%s','%s',%d)",
@@ -58,8 +58,12 @@ if($_GET["chucnang"] == "baiViet") {
             //Lấy thông tin bình luận
             $dSBinhLuan_sql = "SELECT * FROM `binhluan` WHERE maBaiViet = ".$_GET["maBaiViet"]." AND trangThai = 1 ORDER BY trangThai ASC, ngayDang ASC";
             $dSBinhLuan = $csdl->query($dSBinhLuan_sql);
+            $i = 0;
             while($dSBinhLuan_ketQua = $dSBinhLuan->fetch_array(MYSQLI_ASSOC)) {
-                $dSBinhLuan_data[] = $dSBinhLuan_ketQua;
+                $dSBinhLuan_data[$i] = $dSBinhLuan_ketQua;
+                $timeago = explode(" ",$dSBinhLuan_data[$i]["ngayDang"]);
+                $dSBinhLuan_data[$i]["timeago"] = $timeago[0]."T".$timeago[1]."+07:00";
+                $i++;
             }
             
         } else {

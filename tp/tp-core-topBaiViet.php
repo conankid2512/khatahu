@@ -1,4 +1,13 @@
-            <?php $topBaiViet = topBaiViet(); ?>
+<?php
+if (!defined("KHATAHU")) {
+    echo "Vui lòng liên hệ quản trị viên";
+    exit();
+}
+?>
+            <?php
+            $topBaiViet = topBaiViet();
+            if($topBaiViet !== NULL) {
+            ?>
             <!-- activities start -->
             <div class="col-sm-16 bt-space wow fadeInUp animated" data-wow-delay="1s" data-wow-offset="130"> 
               <!-- Nav tabs -->
@@ -19,7 +28,7 @@
                         <div class="col-sm-11 col-md-12">
                           <h4><?php echo $xemNhieu["tenBaiViet"]; ?></h4>
                           <div class="text-danger sub-info">
-                            <div class="time"><span class="ion-android-data icon"></span><time class="timeago" datetime="<?php echo $xemNhieu["timeago"]; ?>"><?php echo $xemNhieu["ngayDang"]; ?> GMT+7</time></div>
+                            <div class="time"><span class="ion-clock icon"></span><time class="timeago" datetime="<?php echo $xemNhieu["timeago"]; ?>"><?php echo $xemNhieu["ngayDang"]; ?> GMT+7</time></div>
                             <div class="comments"><span class="ion-chatbubbles icon"></span><?php echo $xemNhieu["luotBinhLuan"]; ?></div>
                           </div>
                         </div>
@@ -37,7 +46,7 @@
                         <div class="col-sm-11 col-md-12">
                           <h4><?php echo $baiMoi["tenBaiViet"]; ?></h4>
                           <div class="text-danger sub-info">
-                            <div class="time"><span class="ion-android-data icon"></span><time class="timeago" datetime="<?php echo $baiMoi["timeago"]; ?>"><?php echo $baiMoi["ngayDang"]; ?> GMT+7</time></div>
+                            <div class="time"><span class="ion-clock icon"></span><time class="timeago" datetime="<?php echo $baiMoi["timeago"]; ?>"><?php echo $baiMoi["ngayDang"]; ?> GMT+7</time></div>
                             <div class="comments"><span class="ion-chatbubbles icon"></span><?php echo $baiMoi["luotBinhLuan"]; ?></div>
                           </div>
                         </div>
@@ -55,7 +64,7 @@
                         <div class="col-sm-11 col-md-12">
                           <h4><?php echo $binhLuanNhieu["tenBaiViet"]; ?></h4>
                           <div class="text-danger sub-info">
-                            <div class="time"><span class="ion-android-data icon"></span><time class="timeago" datetime="<?php echo $binhLuanNhieu["timeago"]; ?>"><?php echo $binhLuanNhieu["ngayDang"]; ?> GMT+7</time></div>
+                            <div class="time"><span class="ion-clock icon"></span><time class="timeago" datetime="<?php echo $binhLuanNhieu["timeago"]; ?>"><?php echo $binhLuanNhieu["ngayDang"]; ?> GMT+7</time></div>
                             <div class="comments"><span class="ion-chatbubbles icon"></span><?php echo $binhLuanNhieu["luotBinhLuan"]; ?></div>
                           </div>
                         </div>
@@ -67,3 +76,4 @@
               </div>
             </div>
             <!-- activities end -->
+            <?php } ?>
