@@ -14,7 +14,12 @@ if(version_compare(PHP_VERSION, '5.3.7', '<')) {
 }
 
 //Tạo object csdl
-include_once("../includes/csdl.class.php");
+if(file_exists("../includes/csdl.class.php")) {
+    include_once("../includes/csdl.class.php");
+} else {
+    echo "<script>document.location.href = '../caidat/';</script>";
+    exit();
+}
 
 //Include các hàm khác
 include_once("../includes/functions.php");
