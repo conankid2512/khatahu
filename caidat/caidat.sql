@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `baiviet` (
   `trangThai` tinyint(4) NOT NULL COMMENT 'Nháp, Chờ duyệt, Đã duyệt',
   `ngayDang` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `ngayKiemDuyet` timestamp NULL DEFAULT NULL COMMENT 'Ngày được sếp duyệt bài'
-)#engine#AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+)#engine#AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `binhluan` (
   `tenNguoiGui` varchar(255) CHARACTER SET utf8 NOT NULL,
   `emailGui` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT 'Email của độc giả',
   `trangThai` tinyint(1) NOT NULL COMMENT 'Hiển thị/Không hiển thi (Do toà soan quyết định)'
-)#engine#AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+)#engine#AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Triggers `binhluan`
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `nhanvien` (
   `email` varchar(255) CHARACTER SET utf8 NOT NULL,
   `quyenHan` tinyint(4) NOT NULL,
   `moTaNgan` text CHARACTER SET utf8 NOT NULL
-)#engine#AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+)#engine#AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `phanloai` (
 `sTT` int(10) unsigned NOT NULL,
   `maBaiViet` int(10) unsigned NOT NULL,
   `maTheLoai` int(10) unsigned DEFAULT NULL
-)#engine#AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+)#engine#AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
@@ -169,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `tuychon` (
 `maTuyChon` int(10) unsigned NOT NULL,
   `tenTuyChon` varchar(32) CHARACTER SET utf8 NOT NULL,
   `noiDung` text CHARACTER SET utf8 NOT NULL
-)#engine#AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+)#engine#AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Indexes for dumped tables
@@ -231,27 +231,27 @@ ALTER TABLE `tuychon`
 -- AUTO_INCREMENT for table `baiviet`
 --
 ALTER TABLE `baiviet`
-MODIFY `maBaiViet` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `maBaiViet` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `binhluan`
 --
 ALTER TABLE `binhluan`
-MODIFY `maBinhLuan` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `maBinhLuan` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `nhanvien`
 --
 ALTER TABLE `nhanvien`
-MODIFY `maNhanVien` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `maNhanVien` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `phanloai`
 --
 ALTER TABLE `phanloai`
-MODIFY `sTT` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=49;
+MODIFY `sTT` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `quangcao`
 --
 ALTER TABLE `quangcao`
-MODIFY `maQuangCao` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `maQuangCao` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `theloai`
 --
@@ -261,12 +261,12 @@ MODIFY `maTheLoai` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 -- AUTO_INCREMENT for table `theodoitruycap`
 --
 ALTER TABLE `theodoitruycap`
-MODIFY `soThuTu` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `soThuTu` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `tuychon`
 --
 ALTER TABLE `tuychon`
-MODIFY `maTuyChon` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `maTuyChon` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- Constraints for dumped tables
 --
