@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+    <title>Cài đặt website</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width">        
+    <link rel="stylesheet" type="text/css" href="../css/templatemo_main.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/validator.min.js"></script>
+</head>
+<body>
 <?php if(file_exists("../includes/csdl.class.php")) {
     echo "Website đã được cài đặt thành công. Trong trường hợp muốn cài đặt lại, vui lòng xóa file includes/csdl.class.php và thử lại";
     exit();
@@ -14,16 +28,21 @@ if(isset($_POST["dbHost"])) {
     if ($csdl->connect_error) {
         die('Connect Error: ' . $mysqli->connect_error);
     }
-    if($csdl->server_version < 50600) {
-        die('Yêu cầu Mysql phiên bản 5.6 trở lên!');
-    }
-    if(!file_exists("../includes/csdl.tp.php")) {
-        die('Không tìm thấy file includes/csdl.tp.php');
-    }
+    
     if(!file_exists("./caidat.sql")) {
         die('Không tìm thấy file caidat.sql');
     }
     $cauTruc_sql = file_get_contents("./caidat.sql");
+    
+    if($csdl->server_version < 50500) {
+        die('Yêu cầu Mysql phiên bản 5.6 trở lên!');
+    } elseif($csdl->server_version < 50500) {
+        $cauTruc_sql = str_replace("vietnamese_ci","general_ci",$cauTruc_sql);
+    }
+    
+    if(!file_exists("../includes/csdl.tp.php")) {
+        die('Không tìm thấy file includes/csdl.tp.php');
+    }
     $cauTruc_sql = str_replace("#dbname",$_POST["dbName"],$cauTruc_sql);
     $cauTruc = $csdl->multi_query($cauTruc_sql);
     while ($csdl->next_result()) {;} // flush multi_queries
