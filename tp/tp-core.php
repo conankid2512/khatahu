@@ -23,10 +23,11 @@ if (!defined("KHATAHU")) {
 <link rel="stylesheet" href="<?php echo layTuyChon("urlChinh"); ?>css/animate.css" />
 <!-- custom styles -->
 <link href="<?php echo layTuyChon("urlChinh"); ?>css/custom-red.css" rel="stylesheet" id="style">
-<!-- owl carousel styles-->
-<link rel="stylesheet" href="<?php echo layTuyChon("urlChinh"); ?>css/owl.carousel.css">
-<link rel="stylesheet" href="<?php echo layTuyChon("urlChinh"); ?>css/owl.transitions.css">
 <!-- magnific popup styles -->
+<?php if($_GET["chucnang"] == "kiemDuyetBaiViet") {
+    echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"js/fancybox/jquery.fancybox.css\" media=\"screen\" />";
+}
+?>
 <link rel="stylesheet" href="css/magnific-popup.css">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,7 +74,8 @@ if (!defined("KHATAHU")) {
         
         <div class="search-container ">
           <div class="container">
-            <form action="<?php echo layTuyChon("urlChinh"); ?>?chucnang=timKiem" method="POST" role="search">
+            <form action="<?php echo layTuyChon("urlChinh"); ?>" method="GET" role="search">
+              <input type="hidden" name="chucnang" value="timKiem">
               <input id="search-bar" name="q" placeholder="Nhập từ khóa & nhấn Enter" autocomplete="off">
             </form>
           </div>
@@ -99,13 +101,12 @@ if (!defined("KHATAHU")) {
       <div class="col-sm-5 hidden-xs right-sec">
         <div class="bordered">
           <div class="row ">
-            <div class="col-sm-16 bt-space wow fadeInUp animated" data-wow-delay="1s" data-wow-offset="50"> <img class="img-responsive" src="images/ads/336-280-ad.gif" width="336" height="280" alt=""/> <a href="#" class="sponsored">sponsored advert</a> </div>
-            <?php include("./tp/tp-core-topBaiViet.php"); ?>
-            <!-- calendar start
-            <div class="col-sm-16 bt-space wow fadeInUp animated" data-wow-delay="1s" data-wow-offset="50">
-              <div class="single pull-left"></div>
-            </div>
-            <!-- calendar end --> 
+            <?php if($_GET["chucnang"] != "kiemDuyetBaiViet") {
+                echo "<div class=\"col-sm-16 bt-space wow fadeInUp animated\" data-wow-delay=\"1s\" data-wow-offset=\"50\"> <img class=\"img-responsive\" src=\"images/ads/336-280-ad.gif\" width=\"336\" height=\"280\" alt=\"\"/> <a href=\"#\" class=\"sponsored\">sponsored advert</a> </div>";
+                include("./tp/tp-core-topBaiViet.php");
+            } else {
+                include("./tp/tp-core-kiemDuyet.php");
+            }?>
           </div>
         </div>
       </div>
@@ -135,6 +136,19 @@ if (!defined("KHATAHU")) {
 
 <!-- jQuery --> 
 <script src="js/jquery.min.js"></script>
+<?php if($_GET["chucnang"] == "kiemDuyetBaiViet") {
+    echo "<!--jQuery fancybox-->
+<script src=\"js/fancybox/jquery.fancybox.pack.js\"></script>
+<script type=\"text/javascript\">
+    $('.iframe-btn').fancybox({	
+    	'type':'iframe',
+        'autoSize':false,
+        'height': 600,
+        'width':900
+    });
+</script>";
+}
+?>
 <!--jQuery easing--> 
 <script src="js/jquery.easing.1.3.js"></script>
 <!--jQuery timeago--> 

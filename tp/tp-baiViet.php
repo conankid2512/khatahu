@@ -15,7 +15,8 @@ if (!defined("KHATAHU")) {
                       <div class="text-danger sub-info-bordered">
                         <div class="author"><span class="ion-person icon"></span>Viết bởi: <?php echo $maBaiViet_data["tenTacGia"]; ?></div>
                         <div class="time"><span class="ion-clock icon"></span><time class="timeago" datetime="<?php echo $maBaiViet_data["timeago"]; ?>"><?php echo $maBaiViet_data["ngayDang"]; ?> GMT+7</time></div>
-                        <div class="comments"><span class="ion-chatbubbles icon"></span><?php echo $maBaiViet_data["luotBinhLuan"]; ?></div>
+                        <div class="comments" title="<?php echo $maBaiViet_data["luotBinhLuan"]; ?> lượt bình luận"><span class="ion-chatbubbles icon"></span><?php echo $maBaiViet_data["luotBinhLuan"]; ?></div>
+                        <div class="views" title="<?php echo $maBaiViet_data["luotXem"]; ?> lượt xem"><span class="ion-eye icon"></span><?php echo $maBaiViet_data["luotXem"]; ?></div>
                       </div>
                         <?php echo $maBaiViet_data["noiDung"]; ?>
                       <hr>
@@ -33,6 +34,7 @@ if (!defined("KHATAHU")) {
                   </div>
                 </div>
                 <?php } ?>
+                <?php if($_GET["chucnang"] == "baiViet") { ?>
                 <?php if(isset($dSBinhLuan_data)) { ?>
                 <div class="col-sm-16 comments-area">
                   <div class="main-title-outer pull-left">
@@ -83,8 +85,9 @@ if (!defined("KHATAHU")) {
                     </form>
                   </div>
                 </div>
+                <?php } ?>
               </div>
             </div>
-            <!-- post details end --> 
-            
+            <!-- post details end -->
           </div>
+          

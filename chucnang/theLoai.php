@@ -17,8 +17,29 @@ if(isset($_GET["maTheLoai"])) {
         $maTheLoaiNhom = $csdl->query($maTheLoaiNhom_sql);
         if($maTheLoaiNhom) {
             $maTheLoaiNhom_ketQua = $maTheLoaiNhom->fetch_array(MYSQLI_ASSOC);
+            //đếm kết quả
+            $dem_sql = "SELECT COUNT(DISTINCT baiviet.`maBaiViet`) as demKetQua FROM baiviet INNER JOIN phanloai ON baiviet.maBaiViet = phanloai.maBaiViet WHERE phanloai.maTheLoai IN (".$maTheLoaiNhom_ketQua["maTheLoai"].") AND baiviet.trangThai = 2";
+            $dem = $csdl->query($dem_sql);
+            if($dem) {
+                $dem = $dem->fetch_array(MYSQLI_ASSOC);
+                $dem = $dem["demKetQua"];
+            }
+            $trang = isset($_GET['trang']) ? ((int) $_GET['trang']) : 1;
+            $batDau =  ($trang - 1) * 10;
+            //
+            include_once("./includes/pagination/Pagination.class.php");
+
+            // instantiate; set current page; set number of records
+            $phanTrang = (new Pagination());
+            $phanTrang->setCurrent($trang);
+            $phanTrang->setTotal($dem);
+        
+            // grab rendered/parsed pagination markup
+            $phanTrang_html = $phanTrang->parse();
+            
+            
             //Lấy bài viết
-            $dsBaiViet_sql = "SELECT baiviet.* FROM baiviet INNER JOIN phanloai ON baiviet.maBaiViet = phanloai.maBaiViet WHERE phanloai.maTheLoai IN (".$maTheLoaiNhom_ketQua["maTheLoai"].") GROUP BY maBaiViet ORDER BY ngayDang DESC";
+            $dsBaiViet_sql = "SELECT baiviet.* FROM baiviet INNER JOIN phanloai ON baiviet.maBaiViet = phanloai.maBaiViet WHERE phanloai.maTheLoai IN (".$maTheLoaiNhom_ketQua["maTheLoai"].") AND baiviet.trangThai = 2 GROUP BY baiviet.maBaiViet ORDER BY ngayDang DESC LIMIT $batDau, 10";
             $dsBaiViet = $csdl->query($dsBaiViet_sql);
             if($dsBaiViet->num_rows >= 1) {
                 $j = 0;

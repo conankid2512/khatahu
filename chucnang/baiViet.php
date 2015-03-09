@@ -12,6 +12,14 @@ if($_GET["chucnang"] == "baiViet") {
         $maBaiViet_sql =  "SELECT bv.*, (SELECT GROUP_CONCAT(maTheLoai) FROM phanloai WHERE maBaiViet = ".$_GET["maBaiViet"].") as maTheLoai, tg.tenHienThi as tenTacGia, tg.email as emailTacGia, tg.moTaNgan as moTaTacGia FROM `baiviet` bv LEFT JOIN nhanvien tg ON bv.maTacGia = tg.maNhanVien WHERE maBaiViet = ".$_GET["maBaiViet"]." AND trangThai = 2";
         $maBaiViet = $csdl->query($maBaiViet_sql);
         if ($maBaiViet->num_rows == 1) {
+            //Cập nhật lượt xem
+            if(!in_array($_GET["maBaiViet"],$_SESSION["xemBaiViet"])) {
+                $_SESSION["xemBaiViet"][] = $_GET["maBaiViet"];
+                $demLuotXem_sql = "UPDATE `baiviet` SET `luotXem`= luotXem + 1 WHERE `maBaiViet` = ".$_GET["maBaiViet"];
+                $csdl->query($demLuotXem_sql);
+            }
+            
+            //Lấy thông tin bài viết
             $maBaiViet_data = $maBaiViet->fetch_array(MYSQLI_ASSOC);
             $timeago = explode(" ",$maBaiViet_data["ngayDang"]);
             $maBaiViet_data["timeago"] = $timeago[0]."T".$timeago[1]."+07:00";
@@ -71,6 +79,53 @@ if($_GET["chucnang"] == "baiViet") {
             $_GET["chucnang"] = "404";
         }
     } else {
+        include_once("404.php");
+        $_GET["chucnang"] = "404";
+    }
+}
+
+if($_GET["chucnang"] == "kiemDuyetBaiViet") {
+    if($dangNhap->kiemTraQuyenHan() > 1) {
+        if(!empty($_GET["maBaiViet"])) {
+            //Anti SQL-Ịnection
+            $_GET["maBaiViet"] = sprintf("%d",$_GET["maBaiViet"]);
+            $maBaiViet_sql =  "SELECT bv.*, (SELECT GROUP_CONCAT(maTheLoai) FROM phanloai WHERE maBaiViet = ".$_GET["maBaiViet"].") as maTheLoai, tg.tenHienThi as tenTacGia, tg.email as emailTacGia, tg.moTaNgan as moTaTacGia FROM `baiviet` bv LEFT JOIN nhanvien tg ON bv.maTacGia = tg.maNhanVien WHERE maBaiViet = ".$_GET["maBaiViet"]." AND trangThai != 0";
+            $maBaiViet = $csdl->query($maBaiViet_sql);
+            if ($maBaiViet->num_rows == 1) {
+                $maBaiViet_data = $maBaiViet->fetch_array(MYSQLI_ASSOC);
+                //Gán tiêu đề cho trang
+                $tieuDe = $maBaiViet_data["tenBaiViet"]." - ".layTuyChon("tenWebsite");
+                //Lấy cấu trúc thể loại;
+                $cauTrucTheLoai = layCautrucTheLoai("all");
+                if(!empty($cauTrucTheLoai)) {
+                    $i = 0;
+                    foreach($cauTrucTheLoai as $maTheloaiCha => $theLoaiCha_data) {
+                        $dSTheLoai_data[$i]["tenTheLoai"] = $theLoaiCha_data["tenTheLoai"];
+                        $dSTheLoai_data[$i]["maTheLoai"] = $maTheloaiCha;
+                        $i++;
+                        if(isset($theLoaiCha_data["theLoaiCon"])) {
+                            foreach($theLoaiCha_data["theLoaiCon"] as $maTheLoaiCon => $theLoaiCon_data) {
+                                $dSTheLoai_data[$i]["tenTheLoai"] = $theLoaiCha_data["tenTheLoai"]." / ".$theLoaiCon_data["tenTheLoai"];
+                                $dSTheLoai_data[$i]["maTheLoai"] = $maTheLoaiCon;
+                                $i++;
+                            }
+                        }
+                    }
+                }
+                $theLoai_array = explode(",",$maBaiViet_data["maTheLoai"]);
+    
+            } else {
+                echo "1";
+                include_once("404.php");
+                $_GET["chucnang"] = "404";
+            }
+        } else {
+            echo "2";
+            include_once("404.php");
+            $_GET["chucnang"] = "404";
+        }
+    } else {
+        echo "3";
         include_once("404.php");
         $_GET["chucnang"] = "404";
     }

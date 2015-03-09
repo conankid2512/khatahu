@@ -23,6 +23,18 @@ if(version_compare(PHP_VERSION, '5.3.7', '<')) {
     require_once("../includes/password.php");
 }
 
+if(!extension_loaded("fileinfo")) {
+    die("Hệ thống yêu cầu PHP extension: fileinfo");
+}
+
+if(!file_exists("./caidat.sql")) {
+    die('Không tìm thấy file caidat.sql');
+}
+
+if(!file_exists("../includes/csdl.tp.php")) {
+    die('Không tìm thấy file includes/csdl.tp.php');
+}
+    
 if(isset($_POST["dbHost"])) {
     $csdl = new mysqli($_POST["dbHost"], $_POST["dbUsername"], $_POST["dbPass"]);
     if ($csdl->connect_error) {
@@ -30,14 +42,10 @@ if(isset($_POST["dbHost"])) {
     }
     $csdl->set_charset('utf8');
     $csdl->query("SET time_zone = '+07:00'");
-    
-    if(!file_exists("./caidat.sql")) {
-        die('Không tìm thấy file caidat.sql');
-    }
     $cauTruc_sql = file_get_contents("./caidat.sql");
-    
+
     if($csdl->server_version < 50500) {
-        die('Yêu cầu Mysql phiên bản 5.5 trở lên!');
+        die('Hệ thống yêu cầu Mysql phiên bản 5.5 trở lên!');
     } elseif($csdl->server_version < 50600) {
         $cauTruc_sql = str_replace("vietnamese_ci","general_ci",$cauTruc_sql);
         $cauTruc_sql = str_replace("#engine#"," ENGINE=MyISAM ",$cauTruc_sql);
@@ -45,9 +53,6 @@ if(isset($_POST["dbHost"])) {
         $cauTruc_sql = str_replace("#engine#"," ",$cauTruc_sql);
     }
     
-    if(!file_exists("../includes/csdl.tp.php")) {
-        die('Không tìm thấy file includes/csdl.tp.php');
-    }
     $cauTruc_sql = str_replace("#dbname",$_POST["dbName"],$cauTruc_sql);
     $cauTruc = $csdl->multi_query($cauTruc_sql);
     while ($csdl->next_result()) {;} // flush multi_queries

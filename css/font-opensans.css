@@ -13,6 +13,18 @@
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
+  font-weight: 600;
+  src: local('Open Sans'), local('OpenSans'), url('../fonts/opensans-600.woff2') format('woff2'), url('../fonts/opensans-600.woff') format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
   font-weight: 700;
   src: local('Open Sans Bold'), local('OpenSans-Bold'), url('../fonts/opensans-700.woff2') format('woff2'), url('../fonts/opensans-700.woff') format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Open Sans'), local('OpenSans'), url('../fonts/opensans-800.woff2') format('woff2'), url('../fonts/opensans-800.woff') format('woff');
 }

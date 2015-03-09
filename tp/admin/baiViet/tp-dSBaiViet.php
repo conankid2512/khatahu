@@ -6,6 +6,11 @@ if (!defined("ADMIN")) {
 ?>
 <h1 class="margin-bottom-15">Quản lý bài viết</h1>
 <div class="row">
+    <div class="col-md-12 margin-bottom-15">
+        <a href="<?php echo layTuyChon("urlChinh")."admin/?chucnang=dSBaiViet"; ?>" <?php echo $trangThai == 4 ? "class=\"btn btn-primary\"" : ""; ?>>Tất cả (<?php echo $dem_trangThai_data[4]; ?>)</a> | <a href="<?php echo layTuyChon("urlChinh")."admin/?chucnang=dSBaiViet&trangThai=luuNhap"; ?>" <?php echo $trangThai == 0 ? "class=\"btn btn-primary\"" : ""; ?>>Lưu nháp (<?php echo $dem_trangThai_data[0]; ?>)</a> | <a href="<?php echo layTuyChon("urlChinh")."admin/?chucnang=dSBaiViet&trangThai=choDuyet"; ?>" <?php echo $trangThai == 1 ? "class=\"btn btn-primary\"" : ""; ?>>Chờ duyệt (<?php echo $dem_trangThai_data[1]; ?>)</a> | <a href="<?php echo layTuyChon("urlChinh")."admin/?chucnang=dSBaiViet&trangThai=daDuyet"; ?>" <?php echo $trangThai == 2 ? "class=\"btn btn-primary\"" : ""; ?>>Đã duyệt (<?php echo $dem_trangThai_data[2]; ?>)</a> | <a href="<?php echo layTuyChon("urlChinh")."admin/?chucnang=dSBaiViet&trangThai=tuChoi"; ?>" <?php echo $trangThai == 3 ? "class=\"btn btn-primary\"" : ""; ?>>Bị từ chối (<?php echo $dem_trangThai_data[3]; ?>)</a>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-12">
     <?php if(!empty($baoLoi)) {
         echo
@@ -38,6 +43,7 @@ if(!empty($dSBaiViet_data)) {
                             <th>Tên bài viết</th>
                             <th>Tác giả</th>
                             <th>Ngày viết</th>
+                            <th>Trạng thái</th>
                             <?php
                             if ($dangNhap->kiemTraQuyenHan() == 3) {
                                 echo '<th><i class="fa fa-tasks"></i> Kiểm duyệt</th>';
@@ -54,6 +60,7 @@ if(!empty($dSBaiViet_data)) {
                             <td><?php echo $baiViet_data["linkBaiViet"]; ?></td>
                             <td><?php echo $baiViet_data["tenTacGia"]; ?></td>
                             <td><?php echo $baiViet_data["ngayDang"]; ?></td>
+                            <td><?php echo tenTrangThaiBaiViet($baiViet_data["trangThai"]); ?></td>
                             <?php echo $baiViet_data["linkKiemDuyet"]; ?>
                             <td><?php echo $baiViet_data["linkEdit"]; ?></td>
                             <td><?php echo $baiViet_data["linkDel"]; ?></i></td>
@@ -77,6 +84,9 @@ if(!empty($dSBaiViet_data)) {
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-md-12 margin-bottom-15">
+        <?php echo $phanTrang_html; ?>
     </div>
 </div>
 <script>

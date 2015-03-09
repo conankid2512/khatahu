@@ -47,13 +47,11 @@ if (!defined("ADMIN")) {
               <i class="fa fa-pencil"></i>Bài viết<div class="pull-right"><span class="caret"></span></div>
             </a>
             <ul class="templatemo-submenu">
-              <li<?php activeMenu('dSBaiViet')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=dSBaiViet"><i class="fa fa-database"></i>Tất cả bài viết</a></li>
+              <li<?php activeMenu('dSBaiViet')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=dSBaiViet"><i class="fa fa-database"></i>Quản lý bài viết</a></li>
               <li<?php activeMenu('themBaiViet')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=themBaiViet"><i class="fa fa-plus"></i>Thêm bài viết</a></li>
-              <li<?php activeMenu('suaXoaBaiViet')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=dSBaiViet"><i class="fa fa-edit"></i>Sửa/Xóa bài viết</a></li>
-  <?php
+<?php
 if($dangNhap->kiemTraQuyenHan() >= 2) { //Phần chỉ dành cho quản trị viên - biên tập viên
-?>              
-              <li<?php activeMenu('kiemDuyetBaiViet')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=kiemDuyetBaiViet"><i class="fa fa-tasks"></i>Kiểm duyệt bài viết</a></li>
+?>
               <li<?php activeMenu('quanLyBinhLuan')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=dSBinhLuan"><i class="fa fa-tasks"></i>Quản lý bình luận</a></li>
 <?php
 }
@@ -69,9 +67,8 @@ if($dangNhap->kiemTraQuyenHan() == 3) { //Phần chỉ dành cho quản trị vi
               <i class="fa fa-folder-open"></i>Thể loại<div class="pull-right"><span class="caret"></span></div>
             </a>
             <ul class="templatemo-submenu">
-              <li<?php activeMenu('dSTheLoai')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=dSTheLoai"><i class="fa fa-database"></i>Danh sách thể loại</a></li>
+              <li<?php activeMenu('dSTheLoai')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=dSTheLoai"><i class="fa fa-database"></i>Quản lý thể loại</a></li>
               <li<?php activeMenu('themTheLoai')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=themTheLoai"><i class="fa fa-plus"></i>Thêm thể loại</a></li>
-              <li<?php activeMenu('suaXoaTheLoai')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=dSTheLoai"><i class="fa fa-edit"></i>Sửa/Xóa thể loại</a></li>
             </ul>
           </li>
           
@@ -80,9 +77,8 @@ if($dangNhap->kiemTraQuyenHan() == 3) { //Phần chỉ dành cho quản trị vi
               <i class="fa fa-users"></i>Quản lý nhân viên<div class="pull-right"><span class="caret"></span></div>
             </a>
             <ul class="templatemo-submenu">
-              <li<?php activeMenu('dSNhanVien')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=dSNhanVien"><i class="fa fa-database"></i>Tất cả nhân viên</a></li>
+              <li<?php activeMenu('dSNhanVien')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=dSNhanVien"><i class="fa fa-database"></i>Quản lý nhân viên</a></li>
               <li<?php activeMenu('themNhanVien')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=themNhanVien"><i class="fa fa-user"></i>Thêm nhân viên</a></li>
-              <li<?php activeMenu('suaXoaNhanVien')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=dSNhanVien"><i class="fa fa-edit"></i>Sửa/Xóa nhân viên</a></li>
             </ul>
           </li>
 <?php

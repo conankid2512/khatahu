@@ -29,7 +29,8 @@ if (!defined("KHATAHU")) {
                           <h4><?php echo $xemNhieu["tenBaiViet"]; ?></h4>
                           <div class="text-danger sub-info">
                             <div class="time"><span class="ion-clock icon"></span><time class="timeago" datetime="<?php echo $xemNhieu["timeago"]; ?>"><?php echo $xemNhieu["ngayDang"]; ?> GMT+7</time></div>
-                            <div class="comments"><span class="ion-chatbubbles icon"></span><?php echo $xemNhieu["luotBinhLuan"]; ?></div>
+                            <div class="comments" title="<?php echo $xemNhieu["luotBinhLuan"]; ?> lượt bình luận"><span class="ion-chatbubbles icon"></span><?php echo $xemNhieu["luotBinhLuan"]; ?></div>
+                            <div class="views" title="<?php echo $xemNhieu["luotXem"]; ?> lượt xem"><span class="ion-eye icon"></span><?php echo $xemNhieu["luotXem"]; ?></div>
                           </div>
                         </div>
                       </div>
@@ -47,7 +48,8 @@ if (!defined("KHATAHU")) {
                           <h4><?php echo $baiMoi["tenBaiViet"]; ?></h4>
                           <div class="text-danger sub-info">
                             <div class="time"><span class="ion-clock icon"></span><time class="timeago" datetime="<?php echo $baiMoi["timeago"]; ?>"><?php echo $baiMoi["ngayDang"]; ?> GMT+7</time></div>
-                            <div class="comments"><span class="ion-chatbubbles icon"></span><?php echo $baiMoi["luotBinhLuan"]; ?></div>
+                            <div class="comments" title="<?php echo $baiMoi["luotBinhLuan"]; ?> lượt bình luận"><span class="ion-chatbubbles icon"></span><?php echo $baiMoi["luotBinhLuan"]; ?></div>
+                            <div class="views" title="<?php echo $baiMoi["luotXem"]; ?> lượt xem"><span class="ion-eye icon"></span><?php echo $baiMoi["luotXem"]; ?></div>
                           </div>
                         </div>
                       </div>

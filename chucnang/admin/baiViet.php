@@ -9,7 +9,8 @@ if (!defined("ADMIN")) {
 /***********************************************/
 
 $maBaiViet_data = null;
-if($_GET["chucnang"] == "suaBaiViet" || $_GET["chucnang"] == "xoaBaiViet") {
+if($_GET["chucnang"] == "suaBaiViet" || $_GET["chucnang"] == "xoaBaiViet" || $_GET["chucnang"] == "kiemDuyetBaiViet") {
+    if(!empty($_POST["maBaiViet"])) $_GET["maBaiViet"] = $_POST["maBaiViet"];
     if(!empty($_GET["maBaiViet"])) {
         //Anti SQL-Ịnection
         $_GET["maBaiViet"] = sprintf("%d",$_GET["maBaiViet"]);
@@ -24,6 +25,7 @@ if($_GET["chucnang"] == "suaBaiViet" || $_GET["chucnang"] == "xoaBaiViet") {
         $baoLoi = "Không có mã bài viết!"; 
     }
 }
+
 
 
 /*************************/
@@ -53,7 +55,8 @@ if($_GET["chucnang"] == "themBaiViet") {
         //Kiểm tra hình đại diện
         $kiemTraHinh = false;
         if(!empty($_POST["hinhNho"])) {
-            $_POST["hinhNho"] = str_replace($_SESSION["baseURL"],"/",$_POST["hinhNho"]);
+            $_POST["hinhNho"] = str_replace($_SESSION["baseURL"],"/",urldecode($_POST["hinhNho"]));
+            echo $_POST["hinhNho"];
             if(file_exists("..".$_POST["hinhNho"])) {
                 $finfo = finfo_open(FILEINFO_MIME_TYPE);
                 $kieuFile = finfo_file($finfo, "..".$_POST["hinhNho"]);
@@ -160,11 +163,11 @@ if($_GET["chucnang"] == "suaBaiViet" && $maBaiViet_data) {
     //Kiểm tra quyền edit
     $quyenSua = true;
     if($maBaiViet_data["maTacGia"] != $_SESSION["dangNhap"]["maNhanVien"]) {
+        $quyenSua = false;
         $baoLoi = "Bạn chỉ có thể chỉnh sửa bài viết của chính mình!";
-        $quyenSua = false;
     } elseif($maBaiViet_data["trangThai"] == 2 && $dangNhap->kiemTraQuyenHan() < 2) {
-        $baoLoi = "Bài viết đã được duyệt, vui lòng yêu cầu biên tập viên đưa về trạng thái chờ duyệt trước khi chỉnh sửa!";
         $quyenSua = false;
+        $baoLoi = "Bài viết đã được duyệt, vui lòng yêu cầu biên tập viên đưa về trạng thái chờ duyệt trước khi chỉnh sửa!";
     } elseif(isset($_POST["tenBaiViet"])) {//Xử lý thông tin bài viết
         //Kiểm tra hình đại diện
         $kiemTraHinh = false;
@@ -271,6 +274,104 @@ if($_GET["chucnang"] == "suaBaiViet" && $maBaiViet_data) {
     }
 }
 
+/*******************************/
+/*Chức năng kiểm duyệt bài viết*/
+/*******************************/
+
+if($_GET["chucnang"] == "kiemDuyetBaiViet" && $maBaiViet_data) {
+    //Kiểm tra quyền edit
+    if($dangNhap->kiemTraQuyenHan() < 2) {
+        $baoLoi = "Bạn không có quyền sử dụng chức năng này!";
+    } elseif($maBaiViet_data["trangThai"] == 0) {
+        $baoLoi = "Bài viết hiện còn đang lưu nháp, bạn không thể kiểm duyệt được!";
+    } elseif(isset($_POST["maBaiViet"])) {//Xử lý thông tin bài viết
+        //Kiểm tra hình đại diện
+        $kiemTraHinh = false;
+        if(!empty($_POST["hinhNho"])) {
+            $_POST["hinhNho"] = str_replace($_SESSION["baseURL"],"/",$_POST["hinhNho"]);
+            if(file_exists("..".$_POST["hinhNho"])) {
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $kieuFile = finfo_file($finfo, "..".$_POST["hinhNho"]);
+                $kieuHinh = array("image/gif","image/jpeg","image/png","image/bmp");
+                if(in_array($kieuFile,$kieuHinh)) {
+                    $kiemTraHinh = true;
+                }
+            }
+        }
+        if (!$kiemTraHinh) {
+            $baoLoi = "Hình đại diện không hợp lệ!";
+        } elseif ($_POST["trangThai"] == 0 || !is_numeric($_POST["trangThai"])) {
+            $baoLoi = "Mã trạng thái không hợp lệ";
+        } else {
+            
+            //Kiểm tra tính hợp lệ của mã thể loại
+            if(!empty($_POST["theLoai"])) {
+                $_POST["theLoai"] = array_filter($_POST["theLoai"], "is_numeric");
+            }
+            if(!empty($_POST["theLoai"])) {
+                $_POST["theLoai"] = kiemTraTheLoai($_POST["theLoai"]);
+            } else {
+                $_POST["theLoai"] = array("NULL");
+            }
+            
+            //Kiểm tra mã kiểm duyệt
+            $maKiemDuyet = $_SESSION["dangNhap"]["maNhanVien"];
+            $ngayKiemDuyet = "CURRENT_TIMESTAMP";
+            
+            //Bắt đầu mysql transaction
+            $csdl->autocommit(false);
+            
+            //Đưa thông tin bài viết vào mysql
+            
+            $kiemDuyetBaiViet_sql = "UPDATE `baiviet` SET `maKiemDuyet`= %d,`hinhNho`= '%s',`trangThai`= %d,`ngayDang`= CURRENT_TIMESTAMP,`ngayKiemDuyet`= CURRENT_TIMESTAMP WHERE `maBaiViet`= ".$_GET["maBaiViet"];
+            $kiemDuyetBaiViet_sql = sprintf($kiemDuyetBaiViet_sql,
+                                       $_SESSION["dangNhap"]["maNhanVien"],
+                                       $csdl->real_escape_string($_POST["hinhNho"]),
+                                       $_POST["trangThai"]);
+                                       
+            $kiemDuyetBaiViet = $csdl->query($kiemDuyetBaiViet_sql);
+            
+            //Nếu query không thành công, báo lỗi, rollback
+            if($kiemDuyetBaiViet) {
+                //Xóa các khóa phân loại cũ
+                $xoaPhanLoai_sql = "DELETE FROM `phanloai` WHERE `maBaiViet` = ".$_GET["maBaiViet"];
+                $xoaPhanLoai = $csdl->query($xoaPhanLoai_sql);
+                
+                //Nếu query không thành công, báo lỗi, rollback                
+                if($xoaPhanLoai) {
+                    //Thêm phân loại mới vào mysql
+                    foreach($_POST["theLoai"] as $maTheLoai) {
+                        $phanLoai_sqlvalue[] = "(".$_GET["maBaiViet"].",".$maTheLoai.")";
+                    }
+                    $phanLoai_sqlvalue = implode(",",$phanLoai_sqlvalue);
+                    $phanLoai_sql = "INSERT INTO `phanloai`(`maBaiViet`, `maTheLoai`) VALUES ".$phanLoai_sqlvalue;
+                    $phanLoai = $csdl->query($phanLoai_sql);
+                    if($phanLoai) {
+                        //Kết thúc mysql transaction
+                        $csdl->commit();
+                        $csdl->autocommit(true);
+                        $thanhCong = "Kiểm duyệt bài viết thành công!";
+                        
+                        //Lấy thông tin bài viết vừa cập nhật
+                        $maBaiViet = $csdl->query($maBaiViet_sql);
+                        $maBaiViet_data = $maBaiViet->fetch_array(MYSQLI_ASSOC);
+                    } else {
+                        $csdl->rollback();
+                        $baoLoi = "Không thể kiểm duyệt bài viết, vui lờng thử lại hoặc liên hệ quản trị viên!";
+                    }    
+                } else {
+                    $csdl->rollback();
+                    $baoLoi = "Không thể kiểm duyệt bài viết, vui lờng thử lại hoặc liên hệ quản trị viên!";
+                }
+                
+            } else {
+                $csdl->rollback();
+                $baoLoi = "Không thể kiểm duyệt bài viết, vui lờng thử lại hoặc liên hệ quản trị viên!";
+            }
+        }
+    }
+}
+
 /************************/
 /*Chức năng xóa bài viết*/
 /************************/
@@ -315,13 +416,74 @@ if($_GET["chucnang"] == "xoaBaiViet" && $maBaiViet_data) {
 /*Chức năng danh sách bài viết*/
 /******************************/
 
-if($_GET["chucnang"] == "dSBaiViet" || $_GET["chucnang"] == "xoaBaiViet" || ($_GET["chucnang"] == "kiemDuyetBaiViet" && !isset($_GET["maBaiViet"])) ) {
-    $dSBaiViet_sql = "SELECT bv.*, tg.tenDangNhap as tenTacGia, kd.tenDangNhap as tenKiemDuyet FROM `baiviet` bv LEFT JOIN nhanvien tg ON bv.maTacGia = tg.maNhanVien LEFT JOIN nhanvien kd ON bv.maKiemDuyet = kd.maNhanVien WHERE bv.`maTacGia` = ".$_SESSION["dangNhap"]["maNhanVien"]." ORDER BY ngayDang DESC";
-    if($_GET["chucnang"] == "kiemDuyetBaiViet" && $dangNhap->kiemTraQuyenHan(0) >= 2) {
-        $dSBaiViet_sql = "SELECT bv.*, tg.tenDangNhap as tenTacGia, kd.tenDangNhap as tenKiemDuyet FROM `baiviet` bv LEFT JOIN nhanvien tg ON bv.maTacGia = tg.maNhanVien LEFT JOIN nhanvien kd ON bv.maKiemDuyet = kd.maNhanVien WHERE `trangThai` = 1 ORDER BY ngayDang DESC";
-    } elseif($dangNhap->kiemTraQuyenHan(0) >= 2) {
-        $dSBaiViet_sql = "SELECT bv.*, tg.tenDangNhap as tenTacGia, kd.tenDangNhap as tenKiemDuyet FROM `baiviet` bv LEFT JOIN nhanvien tg ON bv.maTacGia = tg.maNhanVien LEFT JOIN nhanvien kd ON bv.maKiemDuyet = kd.maNhanVien WHERE `maTacGia` = ".$_SESSION["dangNhap"]["maNhanVien"]." OR `trangThai` > 0 ORDER BY ngayDang DESC";
+if($_GET["chucnang"] == "dSBaiViet" || $_GET["chucnang"] == "xoaBaiViet" || ($_GET["chucnang"] == "kiemDuyetBaiViet" && $dangNhap->kiemTraQuyenHan(0) >= 2)) {
+    $_GET["chucnang"] = "dSBaiViet";
+    $trang = isset($_GET['trang']) ? ((int) $_GET['trang']) : 1;
+    $batDau =  ($trang - 1) * 10;
+    
+    $trangThai_sql[4] = "";
+    $trangThai_sql[3] = " AND trangThai = 3";
+    $trangThai_sql[2] = " AND trangThai = 2";
+    $trangThai_sql[1] = " AND trangThai = 1";
+    $trangThai_sql[0] = " AND trangThai = 0";
+    
+    $trangThai = isset($_GET['trangThai']) ? $_GET['trangThai'] : "tatCa";
+    
+    switch ($trangThai) {
+        case "luuNhap":
+            $trangThai = 0;
+            break;
+        case "choDuyet":
+            $trangThai = 1;
+            break;
+        case "daDuyet":
+            $trangThai = 2;
+            break;
+        case "tuChoi":
+            $trangThai = 3;
+            break;
+        default:
+            $trangThai = 4;
     }
+    
+    
+    if($dangNhap->kiemTraQuyenHan(0) >= 2) {
+        $dSBaiViet_sql = "SELECT bv.*, tg.tenDangNhap as tenTacGia, kd.tenDangNhap as tenKiemDuyet FROM `baiviet` bv LEFT JOIN nhanvien tg ON bv.maTacGia = tg.maNhanVien LEFT JOIN nhanvien kd ON bv.maKiemDuyet = kd.maNhanVien WHERE (bv.`maTacGia` = ".$_SESSION["dangNhap"]["maNhanVien"]." OR `trangThai` > 0)".$trangThai_sql[$trangThai]." ORDER BY ngayDang DESC LIMIT $batDau, 10";
+        $dem_sql = "SELECT COUNT(*) as demBaiViet FROM baiviet WHERE (`maTacGia` = ".$_SESSION["dangNhap"]["maNhanVien"]." OR `trangThai` > 0)".$trangThai_sql[$trangThai];
+        $dem_trangThai_sql = "SELECT COUNT(*) as demBaiViet, trangThai FROM baiviet WHERE `maTacGia` = ".$_SESSION["dangNhap"]["maNhanVien"]." OR `trangThai` > 0 GROUP BY trangThai";
+    } else {
+        $dSBaiViet_sql = "SELECT bv.*, tg.tenDangNhap as tenTacGia, kd.tenDangNhap as tenKiemDuyet FROM `baiviet` bv LEFT JOIN nhanvien tg ON bv.maTacGia = tg.maNhanVien LEFT JOIN nhanvien kd ON bv.maKiemDuyet = kd.maNhanVien WHERE bv.`maTacGia` = ".$_SESSION["dangNhap"]["maNhanVien"].$trangThai_sql[$trangThai]." ORDER BY ngayDang DESC LIMIT $batDau, 10";
+        $dem_sql = "SELECT COUNT(*) as demBaiViet FROM baiviet WHERE `maTacGia` = ".$_SESSION["dangNhap"]["maNhanVien"].$trangThai_sql[$trangThai];
+        $dem_trangThai_sql = "SELECT COUNT(*) as demBaiViet, trangThai FROM baiviet WHERE `maTacGia` = ".$_SESSION["dangNhap"]["maNhanVien"]." GROUP BY trangThai";
+    }
+    
+    $dem = $csdl->query($dem_sql);
+    if($dem) {
+        $dem = $dem->fetch_array(MYSQLI_ASSOC);
+        $dem = $dem["demBaiViet"];
+    }
+    //
+    include_once("../includes/pagination/Pagination.class.php");
+
+    // instantiate; set current page; set number of records
+    $phanTrang = (new Pagination());
+    $phanTrang->setCurrent($trang);
+    $phanTrang->setTotal($dem);
+    $phanTrang_html = $phanTrang->parse();
+    
+    
+    $dem_trangThai_data[0] = 0;
+    $dem_trangThai_data[1] = 0;
+    $dem_trangThai_data[2] = 0;
+    $dem_trangThai_data[3] = 0;
+    $dem_trangThai_data[4] = 0;
+    
+    $dem_trangThai = $csdl->query($dem_trangThai_sql);
+    while($dem_trangThai_ketQua = $dem_trangThai->fetch_array(MYSQLI_ASSOC)) {
+        $dem_trangThai_data[$dem_trangThai_ketQua["trangThai"]] = $dem_trangThai_ketQua["demBaiViet"];
+        $dem_trangThai_data[4] += $dem_trangThai_ketQua["demBaiViet"];
+    }
+    
     $dSBaiViet = $csdl->query($dSBaiViet_sql);
     $i = 0;
     while($dSBaiViet_ketQua = $dSBaiViet->fetch_array(MYSQLI_ASSOC)) {
@@ -329,7 +491,7 @@ if($_GET["chucnang"] == "dSBaiViet" || $_GET["chucnang"] == "xoaBaiViet" || ($_G
         if($dangNhap->kiemTraQuyenHan() < 2) {
             $dSBaiViet_data[$i]["linkKiemDuyet"] = "";
         } else {
-            $dSBaiViet_data[$i]["linkKiemDuyet"] = "<td><a href=\"".layTuyChon("urlChinh")."admin/?chucnang=kiemDuyetBaiViet&maBaiViet=".$dSBaiViet_ketQua["maBaiViet"]."\"><i class=\"fa fa-tasks\"></i></a></td>";
+            $dSBaiViet_data[$i]["linkKiemDuyet"] = "<td><a href=\"".layTuyChon("urlChinh")."?chucnang=kiemDuyetBaiViet&maBaiViet=".$dSBaiViet_ketQua["maBaiViet"]."\"><i class=\"fa fa-tasks\"></i></a></td>";
         }
         
         if($dSBaiViet_ketQua["maTacGia"] == $_SESSION["dangNhap"]["maNhanVien"]) {
@@ -339,6 +501,7 @@ if($_GET["chucnang"] == "dSBaiViet" || $_GET["chucnang"] == "xoaBaiViet" || ($_G
         }
         
         $dSBaiViet_data[$i]["linkDel"] = "<a data-mabaiviet=\"".$dSBaiViet_ketQua["maBaiViet"]."\" data-tenbaiviet=\"".$dSBaiViet_ketQua["tenBaiViet"]."\" data-tentacgia=\"".$dSBaiViet_ketQua["tenTacGia"]."\" class=\"xoaBaiVietURL\" href=\"javascript:;\" data-toggle=\"modal\" data-target=\"#xoaBaiVietModal\"><i class=\"fa fa-times\"></i></a>";
+        
         $dSBaiViet_data[$i]["linkBaiViet"] = "<a href=\"".layTuyChon("urlChinh")."?chucnang=baiViet&maBaiViet=".$dSBaiViet_ketQua["maBaiViet"]."\">".$dSBaiViet_ketQua["tenBaiViet"]."</a>";
         $i++;
     }

@@ -24,19 +24,19 @@ $cauHinhChucNang["themBaiViet"]["subOpen"] = "baiViet";
 //Chức năng sửa bài viết
 $cauHinhChucNang["suaBaiViet"]["functionFile"] = "baiViet.php";
 $cauHinhChucNang["suaBaiViet"]["tpFile"] = "baiViet/tp-suaBaiViet.php";
-$cauHinhChucNang["suaBaiViet"]["activeMenu"] = "suaXoaBaiViet";
+$cauHinhChucNang["suaBaiViet"]["activeMenu"] = "dSBaiViet";
 $cauHinhChucNang["suaBaiViet"]["subOpen"] = "baiViet";
 
 //Chức năng xóa bài viết
 $cauHinhChucNang["xoaBaiViet"]["functionFile"] = "baiViet.php";
 $cauHinhChucNang["xoaBaiViet"]["tpFile"] = "baiViet/tp-dSBaiViet.php";
-$cauHinhChucNang["xoaBaiViet"]["activeMenu"] = "suaXoaBaiViet";
+$cauHinhChucNang["xoaBaiViet"]["activeMenu"] = "dSBaiViet";
 $cauHinhChucNang["xoaBaiViet"]["subOpen"] = "baiViet";
 
 //Chức năng danh sách bài viết
 $cauHinhChucNang["dSBaiViet"]["functionFile"] = "baiViet.php";
 $cauHinhChucNang["dSBaiViet"]["tpFile"] = "baiViet/tp-dSBaiViet.php";
-$cauHinhChucNang["dSBaiViet"]["activeMenu"] = "suaXoaBaiViet";
+$cauHinhChucNang["dSBaiViet"]["activeMenu"] = "dSBaiViet";
 $cauHinhChucNang["dSBaiViet"]["subOpen"] = "baiViet";
 
 //Chức năng kiểm duyệt bài viết
@@ -62,25 +62,25 @@ $cauHinhChucNang["themNhanVien"]["subOpen"] = "nhanVien";
 //Chức năng sửa nhân viên
 $cauHinhChucNang["suaNhanVien"]["functionFile"] = "nhanVien.php";
 $cauHinhChucNang["suaNhanVien"]["tpFile"] = "nhanVien/tp-suaNhanVien.php";
-$cauHinhChucNang["suaNhanVien"]["activeMenu"] = "suaXoaNhanVien";
+$cauHinhChucNang["suaNhanVien"]["activeMenu"] = "dSNhanVien";
 $cauHinhChucNang["suaNhanVien"]["subOpen"] = "nhanVien";
 
 //Chức năng danh sách nhân viên
 $cauHinhChucNang["dSNhanVien"]["functionFile"] = "nhanVien.php";
 $cauHinhChucNang["dSNhanVien"]["tpFile"] = "nhanVien/tp-dSNhanVien.php";
-$cauHinhChucNang["dSNhanVien"]["activeMenu"] = "suaXoaNhanVien";
+$cauHinhChucNang["dSNhanVien"]["activeMenu"] = "dSNhanVien";
 $cauHinhChucNang["dSNhanVien"]["subOpen"] = "nhanVien";
 
 //Chức năng xóa nhân viên
 $cauHinhChucNang["xoaNhanVien"]["functionFile"] = "nhanVien.php";
 $cauHinhChucNang["xoaNhanVien"]["tpFile"] = "nhanVien/tp-dSNhanVien.php";
-$cauHinhChucNang["xoaNhanVien"]["activeMenu"] = "suaXoaNhanVien";
+$cauHinhChucNang["xoaNhanVien"]["activeMenu"] = "dSNhanVien";
 $cauHinhChucNang["xoaNhanVien"]["subOpen"] = "nhanVien";
 
 //Chức năng khóa nhân viên
 $cauHinhChucNang["khoaNhanVien"]["functionFile"] = "nhanVien.php";
 $cauHinhChucNang["khoaNhanVien"]["tpFile"] = "nhanVien/tp-dSNhanVien.php";
-$cauHinhChucNang["khoaNhanVien"]["activeMenu"] = "suaXoaNhanVien";
+$cauHinhChucNang["khoaNhanVien"]["activeMenu"] = "dSNhanVien";
 $cauHinhChucNang["khoaNhanVien"]["subOpen"] = "nhanVien";
 
 
@@ -98,19 +98,19 @@ $cauHinhChucNang["themTheLoai"]["subOpen"] = "theLoai";
 //Chức năng sửa thể loại
 $cauHinhChucNang["suaTheLoai"]["functionFile"] = "theLoai.php";
 $cauHinhChucNang["suaTheLoai"]["tpFile"] = "theLoai/tp-suaTheLoai.php";
-$cauHinhChucNang["suaTheLoai"]["activeMenu"] = "suaXoaTheLoai";
+$cauHinhChucNang["suaTheLoai"]["activeMenu"] = "dSTheLoai";
 $cauHinhChucNang["suaTheLoai"]["subOpen"] = "theLoai";
 
 //Chức năng xóa thể loại
 $cauHinhChucNang["xoaTheLoai"]["functionFile"] = "theLoai.php";
 $cauHinhChucNang["xoaTheLoai"]["tpFile"] = "theLoai/tp-dSTheLoai.php";
-$cauHinhChucNang["xoaTheLoai"]["activeMenu"] = "suaXoaTheLoai";
+$cauHinhChucNang["xoaTheLoai"]["activeMenu"] = "dSTheLoai";
 $cauHinhChucNang["xoaTheLoai"]["subOpen"] = "theLoai";
 
 //Chức năng danh sách thể loại
 $cauHinhChucNang["dSTheLoai"]["functionFile"] = "theLoai.php";
 $cauHinhChucNang["dSTheLoai"]["tpFile"] = "theLoai/tp-dSTheLoai.php";
-$cauHinhChucNang["dSTheLoai"]["activeMenu"] = "suaXoaTheLoai";
+$cauHinhChucNang["dSTheLoai"]["activeMenu"] = "dSTheLoai";
 $cauHinhChucNang["dSTheLoai"]["subOpen"] = "theLoai";
 
 /************************/

@@ -189,10 +189,11 @@ Author : Webyzona.com
 }
 .comments {
 	display: inline-block;
+    padding-right: 10px;
 }
-.stars {
-	font-size: 14px;
-	color: #e74c3c;
+.views {
+    padding-right: 10px;
+    display: inline-block;
 }
 /*1-8 MODAL BOX*/
 .mfp-zoom-in { /* start state */ /* animate in */ /* animate out */

@@ -51,15 +51,26 @@ function luuTuyChon($tenTuyChon,$giaTrituyChon) {
 }
 
 //Hiển thị tên quyền hạn
+$tenQuyenHan[0] = "Khách vãng lai";
+$tenQuyenHan[1] = "Phóng viên";
+$tenQuyenHan[2] = "Biên tập viên";
+$tenQuyenHan[3] = "Quản trị viên";
 function tenQuyenHan($maQuyenHan) {
     if($maQuyenHan < 0) {
         return "Bị khóa";
     }
-    $quyenHan[0] = "Khách vãng lai";
-    $quyenHan[1] = "Phóng viên";
-    $quyenHan[2] = "Biên tập viên";
-    $quyenHan[3] = "Quản trị viên";
-    return $quyenHan[$maQuyenHan];
+    global $tenQuyenHan;
+    return $tenQuyenHan[$maQuyenHan];
+}
+
+//Hiển thị trạng thái bài viết
+$tenTrangThai[0] = "Lưu nháp";
+$tenTrangThai[1] = "Chờ duyệt";
+$tenTrangThai[2] = "Đã duyệt";
+$tenTrangThai[3] = "Bị từ chối";
+function tenTrangThaiBaiViet($maTrangThai) {
+    global $tenTrangThai;
+    return $tenTrangThai[$maTrangThai];
 }
 
 //Lấy cấu trúc thể loại
@@ -116,7 +127,7 @@ function hienThiTopMenu() {
 function topBaiViet() {
     global $csdl;
     $topBaiViet = NULL;
-    $xemNhieu_sql = "SELECT * FROM baiViet WHERE ngayDang > DATE_SUB(NOW(), INTERVAL 30 DAY) ORDER BY luotXem DESC LIMIT 5";
+    $xemNhieu_sql = "SELECT * FROM baiViet WHERE ngayDang > DATE_SUB(NOW(), INTERVAL 30 DAY) AND trangThai = 2 ORDER BY luotXem DESC, ngayDang DESC LIMIT 5";
     $xemNhieu = $csdl->query($xemNhieu_sql);
     if($xemNhieu) {
         $i = 0;
@@ -128,7 +139,7 @@ function topBaiViet() {
         }
     }
     
-    $binhLuanNhieu_sql = "SELECT * FROM baiViet WHERE ngayDang > DATE_SUB(NOW(), INTERVAL 30 DAY) ORDER BY luotBinhLuan DESC LIMIT 5";
+    $binhLuanNhieu_sql = "SELECT * FROM baiViet WHERE ngayDang > DATE_SUB(NOW(), INTERVAL 30 DAY) AND trangThai = 2 ORDER BY luotBinhLuan DESC, ngayDang DESC LIMIT 5";
     $binhLuanNhieu = $csdl->query($binhLuanNhieu_sql);
     if($binhLuanNhieu) {
         $i = 0;

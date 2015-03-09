@@ -56,10 +56,10 @@
             'classes' => array('clearfix', 'pagination'),
             'crumbs' => 5,
             'rpp' => 10,
-            'key' => 'page',
+            'key' => 'trang',
             'target' => '',
-            'next' => 'Next &raquo;',
-            'previous' => '&laquo; Previous',
+            'next' => 'Trang sau &raquo;',
+            'previous' => '&laquo; Trang trước',
             'alwaysShowPagination' => false,
             'clean' => false
         );

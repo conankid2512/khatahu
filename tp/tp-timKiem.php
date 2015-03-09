@@ -19,7 +19,8 @@ if (!defined("KHATAHU")) {
                     <h3><?php echo $baiViet_data["tenBaiViet"]; ?></h3>
                     <div class="text-danger sub-info-bordered">
                       <div class="time"><span class="ion-clock icon"></span><time class="timeago" datetime="<?php echo $baiViet_data["timeago"]; ?>"><?php echo $baiViet_data["ngayDang"]; ?> GMT+7</time></div>
-                      <div class="comments"><span class="ion-chatbubbles icon"></span><?php echo $baiViet_data["luotBinhLuan"]; ?></div>
+                      <div class="comments" title="<?php echo $baiViet_data["luotBinhLuan"]; ?> lượt bình luận"><span class="ion-chatbubbles icon"></span><?php echo $baiViet_data["luotBinhLuan"]; ?></div>
+                      <div class="views" title="<?php echo $baiViet_data["luotXem"]; ?> lượt xem"><span class="ion-eye icon"></span><?php echo $baiViet_data["luotXem"]; ?></div>
                     </div>
                   </div>
                   </a>
@@ -31,36 +32,20 @@ if (!defined("KHATAHU")) {
 
             <div class="col-sm-16">
               <hr>
-              <ul class="pagination">
-                <li><a href="#">&laquo;</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
+                <?php echo $phanTrang_html; ?>
             </div>
           </div>
 <?php } else { ?>
           <div class="row">
             <div class="col-sm-16">
-              <h3>Sorry, we didn't find any result but you can still try:</h3>
+              <h3>Xin lỗi, chúng tôi không tìm thấy bất kỳ bài viết nào, bạn vui lòng:</h3>
             </div>
             <div class="col-sm-16">
               <ul class="icn-list">
-                <li>Check your spelling.</li>
-                <li>Try more general words.</li>
-                <li>Try different words that mean the same thing.</li>
-                <li><a href="#">Post a request</a> and we will help you.</li>
-              </ul>
-              <hr>
-              <h3>Or you can discover populat topics in:</h3>
-              <ul class="icn-list">
-                <li><a href="#">In enim justo.</a></li>
-                <li><a href="#">Aenean vulputate eleifend tellus.</a></li>
-                <li><a href="#"> Etiam ultricies nisi vel.</a></li>
-                <li><a href="#">Nam quam nunc.</a></li>
+                <li>Kiểm tra chính tả của từ khóa.</li>
+                <li>Sử dung từ khóa có dấu, hiện giờ chúng tôi chưa hổ trợ tìm kiếm tiếng việt không dấu.</li>
+                <li>Sử dụng những từ khóa phổ biến hơn.</li>
+                <li>Sử dụng những từ khóa đồng nghĩa.</li>
               </ul>
             </div>
           </div>

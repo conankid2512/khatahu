@@ -22,6 +22,9 @@ include_once("./includes/dangnhap.class.php");
 //Cấu hình base path cho web
 $_SESSION["baseURL"] = parse_url(layTuyChon("urlChinh"),PHP_URL_PATH);
 
+//Tạo sesion xem bài viết
+if(!isset($_SESSION["xemBaiViet"])) $_SESSION["xemBaiViet"] = array();
+
 //
 $dangNhap = new dangNhap();
 
