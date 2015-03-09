@@ -22,7 +22,7 @@ if (!defined("ADMIN")) {
 <body>
   <div class="navbar navbar-inverse" role="navigation">
       <div class="navbar-header">
-        <div class="logo"><h1>Quản trị website</h1></div>
+        <a href="<?php echo layTuyChon("urlChinh"); ?>"><div class="logo"><h1><?php echo layTuyChon("tenWebsite"); ?></h1></div></a>
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
@@ -40,7 +40,7 @@ if (!defined("ADMIN")) {
               <span class="btn btn-default">Go</span>
             </form>
           </li>
-          <li<?php activeMenu('bangDieuKhien')?>><a href="#"><i class="fa fa-home"></i>Bảng điều khiển</a></li>
+          <li<?php activeMenu('bangDieuKhien')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/"><i class="fa fa-home"></i>Bảng điều khiển</a></li>
           
           <li class="sub<?php subOpen('baiViet')?>">
             <a href="javascript:;">
@@ -84,7 +84,7 @@ if($dangNhap->kiemTraQuyenHan() == 3) { //Phần chỉ dành cho quản trị vi
 <?php
 }
 ?>          
-          <li><a href="preferences.html"><i class="fa fa-cog"></i>Tùy chỉnh</a></li>
+          <li<?php activeMenu('taiKhoan')?>><a href="<?php echo layTuyChon("urlChinh"); ?>admin/?chucnang=taiKhoan"><i class="fa fa-cog"></i>Tài khoản</a></li>
           <li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Đăng xuất</a></li>
         </ul>
       </div><!--/.navbar-collapse -->

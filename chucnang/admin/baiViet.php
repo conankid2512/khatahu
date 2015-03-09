@@ -55,7 +55,10 @@ if($_GET["chucnang"] == "themBaiViet") {
         //Kiểm tra hình đại diện
         $kiemTraHinh = false;
         if(!empty($_POST["hinhNho"])) {
-            $_POST["hinhNho"] = str_replace($_SESSION["baseURL"],"/",urldecode($_POST["hinhNho"]));
+            $_POST["hinhNho"] = urldecode($_POST["hinhNho"]);
+            if (substr($_POST["hinhNho"], 0, strlen($_SESSION["baseURL"])) == $_SESSION["baseURL"]) {
+                $_POST["hinhNho"] = substr($_POST["hinhNho"], strlen($_SESSION["baseURL"]));
+            }
             echo $_POST["hinhNho"];
             if(file_exists("..".$_POST["hinhNho"])) {
                 $finfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -172,7 +175,10 @@ if($_GET["chucnang"] == "suaBaiViet" && $maBaiViet_data) {
         //Kiểm tra hình đại diện
         $kiemTraHinh = false;
         if(!empty($_POST["hinhNho"])) {
-            $_POST["hinhNho"] = str_replace($_SESSION["baseURL"],"/",$_POST["hinhNho"]);
+            $_POST["hinhNho"] = urldecode($_POST["hinhNho"]);
+            if (substr($_POST["hinhNho"], 0, strlen($_SESSION["baseURL"])) == $_SESSION["baseURL"]) {
+                $_POST["hinhNho"] = substr($_POST["hinhNho"], strlen($_SESSION["baseURL"]));
+            }
             if(file_exists("..".$_POST["hinhNho"])) {
                 $finfo = finfo_open(FILEINFO_MIME_TYPE);
                 $kieuFile = finfo_file($finfo, "..".$_POST["hinhNho"]);
@@ -287,8 +293,12 @@ if($_GET["chucnang"] == "kiemDuyetBaiViet" && $maBaiViet_data) {
     } elseif(isset($_POST["maBaiViet"])) {//Xử lý thông tin bài viết
         //Kiểm tra hình đại diện
         $kiemTraHinh = false;
+        
         if(!empty($_POST["hinhNho"])) {
-            $_POST["hinhNho"] = str_replace($_SESSION["baseURL"],"/",$_POST["hinhNho"]);
+            $_POST["hinhNho"] = urldecode($_POST["hinhNho"]);
+            if (substr($_POST["hinhNho"], 0, strlen($_SESSION["baseURL"])) == $_SESSION["baseURL"]) {
+                $_POST["hinhNho"] = substr($_POST["hinhNho"], strlen($_SESSION["baseURL"]));
+            }
             if(file_exists("..".$_POST["hinhNho"])) {
                 $finfo = finfo_open(FILEINFO_MIME_TYPE);
                 $kieuFile = finfo_file($finfo, "..".$_POST["hinhNho"]);

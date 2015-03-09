@@ -20,7 +20,7 @@ if($top) {
             $nhomTheLoaiTrangChu[$i]["maNhom"] = $second_ketQua["maTheLoai"];
         }
 
-        $baiViet_sql = "SELECT baiviet.* FROM baiviet INNER JOIN phanloai ON baiviet.maBaiViet = phanloai.maBaiViet WHERE phanloai.maTheLoai IN (".$nhomTheLoaiTrangChu[$i]["maNhom"].") GROUP BY maBaiViet ORDER BY ngayDang DESC LIMIT 3";
+        $baiViet_sql = "SELECT baiviet.* FROM baiviet INNER JOIN phanloai ON baiviet.maBaiViet = phanloai.maBaiViet WHERE phanloai.maTheLoai IN (".$nhomTheLoaiTrangChu[$i]["maNhom"].") AND trangThai = 2 GROUP BY maBaiViet ORDER BY ngayDang DESC LIMIT 3";
         $baiViet = $csdl->query($baiViet_sql);
         if($baiViet->num_rows >= 1) {
             $j = 0;

@@ -136,4 +136,11 @@ $cauHinhChucNang["dSBinhLuan"]["activeMenu"] = "quanLyBinhLuan";
 $cauHinhChucNang["dSBinhLuan"]["subOpen"] = "baiViet";
 
 
+//Chức năng chỉnh sủa tài khoản
+$cauHinhChucNang["taiKhoan"]["functionFile"] = "nhanVien.php";
+$cauHinhChucNang["taiKhoan"]["tpFile"] = "nhanVien/tp-suaNhanVien.php";
+$cauHinhChucNang["taiKhoan"]["activeMenu"] = "taiKhoan";
+$cauHinhChucNang["taiKhoan"]["subOpen"] = "taiKhoan";
+
+
 ?>

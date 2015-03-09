@@ -7,7 +7,7 @@ if (!defined("ADMIN")) {
 <?php
 if(!$maNhanVien_data) $baoLoi = "Mã nhân viên không tồn tại";
 ?>
-<h1>Sửa nhân viên</h1>
+<h1><?php echo $_GET["chucnang"] == "taiKhoan" ?  "Tài khoản" : "Sửa nhân viên";?></h1>
 <div class="row">
     <div class="col-md-12">
     <?php if(!empty($baoLoi)) {
@@ -35,12 +35,12 @@ if($dangNhap->kiemTraQuyenHan() == 3 && $maNhanVien_data) {
             <div class="row">
                 <div class="col-md-6 margin-bottom-15 form-group">
                     <label for="tenDangNhap">Tên đăng nhập</label>
-                    <input class="form-control" pattern="^([_a-z0-9]){3,64}$" id="tenDangNhap" value="<?php echo $maNhanVien_data["tenDangNhap"]; ?>" type="text" name="tenDangNhap" data-minlength="3" maxlength="64" data-error="Tối thiểu 3, tối đa 64 ký tự chữ thường, số, và &quot;_&quot;" required />
+                    <input class="form-control" pattern="^([_a-z0-9]){3,64}$" id="tenDangNhap" value="<?php echo $maNhanVien_data["tenDangNhap"]; ?>" type="text" name="tenDangNhap" data-minlength="3" maxlength="64" data-error="Tối thiểu 3, tối đa 64 ký tự chữ thường, số, và &quot;_&quot;" required <?php if($_GET["chucnang"] == "taiKhoan") echo "disabled";?> />
                     <div class="help-block with-errors"></div>   
                 </div>
                 <div class="col-md-6 margin-bottom-15 form-group">
                     <label for="quyenHan">Quyền hạn nhân viên</label>
-                    <select class="form-control" id="quyenHan" name="quyenHan" required data-error="Vui lòng chọn quyền hạn cho nhân viên">
+                    <select class="form-control" id="quyenHan" name="quyenHan" required data-error="Vui lòng chọn quyền hạn cho nhân viên" <?php if($_GET["chucnang"] == "taiKhoan") echo "disabled";?>>
                         <option value="">Vui lòng chọn...</option>
                         <option value="3" <?php if($maNhanVien_data["quyenHan"] == 3) echo "selected";?>>Quản trị viên</option>
                         <option value="2" <?php if($maNhanVien_data["quyenHan"] == 2) echo "selected";?>>Biên tập viên</option>

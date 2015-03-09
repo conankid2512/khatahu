@@ -10,8 +10,10 @@ $dSNhanVien_data = null;
 /************************************************/
 /*Kiểm tra xem mã nhân viên có tồn tại hay không*/
 /************************************************/
-
-if($_GET["chucnang"] == "suaNhanVien" || $_GET["chucnang"] == "xoaNhanVien" || $_GET["chucnang"] == "khoaNhanVien") {
+if($_GET["chucnang"] == "taiKhoan") {
+    $_GET["maNhanVien"] = $_SESSION["dangNhap"]["maNhanVien"];
+}
+if($_GET["chucnang"] == "taiKhoan" || $_GET["chucnang"] == "suaNhanVien" || $_GET["chucnang"] == "xoaNhanVien" || $_GET["chucnang"] == "khoaNhanVien") {
     if(!empty($_GET["maNhanVien"])) {
         //Anti SQL-Ịnection
         $_GET["maNhanVien"] = sprintf("%d",$_GET["maNhanVien"]); 
@@ -153,6 +155,52 @@ if($_GET["chucnang"] == "xoaNhanVien" && !empty($_GET["maNhanVien"]) && $maNhanV
         } else {
             $baoLoi = "Không thể xóa nhân viên ".$maNhanVien_data["tenDangNhap"]." vui lòng thử lại hoặc liên hệ quản trị viên";
         }        
+    }
+}
+
+
+/*************************/
+/*Chức năng sửa tài khoản*/
+/*************************/
+
+//Kiểm tra quyền sửa tài khoản
+if($_GET["chucnang"] == "taiKhoan" && isset($_POST["tenDangNhap"])) {
+    //Kiểm tra dữ liệu đầu vào
+    if($_POST["matKhau"] != $_POST["nhapLaiMatKhau"]) {
+        $baoLoi = "Xác nhân mật khẩu không trùng khớp, vui lòng kiểm tra lại!";
+    } elseif(!empty($_POST["matKhau"]) && strlen($_POST["matKhau"]) < 8) {
+        $baoLoi = "Mật khẩu tối thiểu 8 ký tự";
+    } elseif(empty($_POST["tenHienThi"])) {
+        $baoLoi = "Tên hiển thị rỗng";
+    } elseif(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) || strlen($_POST["email"]) > 255) {
+        $baoLoi = "Email không đúng định dạng hoặc dài hơn 255 ký tự";
+    } elseif(strlen($_POST["tenHienThi"]) > 255) {
+        $baoLoi = "Tên hiển thị quá dài"; //Tên hiển thị sử dụng Unicode, độ dài tối đa 255byte
+    } else {
+        if(!empty($_POST["matKhau"])) {
+            $matKhau_sql = "`matKhauHash`='".$csdl->real_escape_string(password_hash($_POST["matKhau"], PASSWORD_DEFAULT))."',";
+        } else {
+            $matKhau_sql = "";
+        }
+        $suaNhanVien_sql = "UPDATE `nhanvien` SET `tenHienThi`='%s',%s`moTaNgan`='%s' WHERE maNhanVien = ".$_GET["maNhanVien"];
+        $suaNhanVien_sql = sprintf($suaNhanVien_sql,
+                                    $csdl->real_escape_string($_POST["tenHienThi"]),
+                                    $matKhau_sql,
+                                    $csdl->real_escape_string($_POST["moTaNgan"]));
+        $suaNhanVien = $csdl->query($suaNhanVien_sql);
+        
+        if($suaNhanVien) {
+            
+            //Lây lại thông tin nhân viên mới cập nhật
+            $maNhanVien_sql =  "SELECT * FROM nhanvien WHERE maNhanVien = ".$_GET["maNhanVien"];
+            $maNhanVien = $csdl->query($maNhanVien_sql);
+            $maNhanVien_data = $maNhanVien->fetch_array(MYSQLI_ASSOC);
+
+            //Thông báo thành công
+            $thanhCong = "Cập nhật thông tin nhân viên ".$_POST["tenDangNhap"]." thành công!";
+        } else {
+            $baoLoi = "Cập nhật thông tin nhân viên ".$_POST["tenDangNhap"]." thất bại, vui lòng thử lại hoặc liên hệ quản trị viên!";
+        }
     }
 }
 
