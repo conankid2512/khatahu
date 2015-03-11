@@ -117,22 +117,6 @@ CREATE TABLE IF NOT EXISTS `phanloai` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quangcao`
---
-
---DROP TABLE IF EXISTS `quangcao`;
---CREATE TABLE IF NOT EXISTS `quangcao` (
---`maQuangCao` int(10) unsigned NOT NULL,
---  `maViTri` varchar(20) CHARACTER SET utf8 NOT NULL,
---  `noiDung` text CHARACTER SET utf8 NOT NULL,
---  `ngayBatDau` date NOT NULL,
---  `ngayKetThuc` date NOT NULL,
---  `trangThai` tinyint(1) NOT NULL
---)#engine#DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `theloai`
 --
 
@@ -144,19 +128,6 @@ CREATE TABLE IF NOT EXISTS `theloai` (
   `tTMenu` int(10) NOT NULL DEFAULT '0',
   `tTTrangChu` int(10) NOT NULL DEFAULT '0'
 )#engine#AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `theodoitruycap`
---
-
---DROP TABLE IF EXISTS `theodoitruycap`;
---CREATE TABLE IF NOT EXISTS `theodoitruycap` (
---`soThuTu` int(10) unsigned NOT NULL,
---  `maBaiViet` int(10) unsigned NOT NULL,
---  `tGTruyCap` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Thời điểm ghi nhận truy cập'
---)#engine#DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
@@ -200,22 +171,10 @@ ALTER TABLE `phanloai`
  ADD PRIMARY KEY (`sTT`), ADD UNIQUE KEY `unique` (`maBaiViet`,`maTheLoai`), ADD KEY `maTheLoai` (`maTheLoai`);
 
 --
--- Indexes for table `quangcao`
---
---ALTER TABLE `quangcao`
--- ADD PRIMARY KEY (`maQuangCao`);
-
---
 -- Indexes for table `theloai`
 --
 ALTER TABLE `theloai`
  ADD PRIMARY KEY (`maTheLoai`), ADD KEY `maTheLoaiCha` (`maTheLoaiCha`);
-
---
--- Indexes for table `theodoitruycap`
---
---ALTER TABLE `theodoitruycap`
--- ADD PRIMARY KEY (`soThuTu`), ADD KEY `maBaiViet` (`maBaiViet`);
 
 --
 -- Indexes for table `tuychon`
@@ -248,20 +207,10 @@ MODIFY `maNhanVien` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 ALTER TABLE `phanloai`
 MODIFY `sTT` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
--- AUTO_INCREMENT for table `quangcao`
---
---ALTER TABLE `quangcao`
---MODIFY `maQuangCao` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
---
 -- AUTO_INCREMENT for table `theloai`
 --
 ALTER TABLE `theloai`
 MODIFY `maTheLoai` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `theodoitruycap`
---
---ALTER TABLE `theodoitruycap`
---MODIFY `soThuTu` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `tuychon`
 --
@@ -296,12 +245,6 @@ ADD CONSTRAINT `phanloai_ibfk_2` FOREIGN KEY (`maTheLoai`) REFERENCES `theloai` 
 --
 ALTER TABLE `theloai`
 ADD CONSTRAINT `theloai_ibfk_1` FOREIGN KEY (`maTheLoaiCha`) REFERENCES `theloai` (`maTheLoai`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Constraints for table `theodoitruycap`
---
---ALTER TABLE `theodoitruycap`
---ADD CONSTRAINT `theodoitruycap_ibfk_1` FOREIGN KEY (`maBaiViet`) REFERENCES `baiviet` (`maBaiViet`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
