@@ -59,7 +59,6 @@ if($_GET["chucnang"] == "themBaiViet") {
             if (substr($_POST["hinhNho"], 0, strlen($_SESSION["baseURL"])) == $_SESSION["baseURL"]) {
                 $_POST["hinhNho"] = "/".substr($_POST["hinhNho"], strlen($_SESSION["baseURL"]));
             }
-            echo $_POST["hinhNho"];
             if(file_exists("..".$_POST["hinhNho"])) {
                 $finfo = finfo_open(FILEINFO_MIME_TYPE);
                 $kieuFile = finfo_file($finfo, "..".$_POST["hinhNho"]);
