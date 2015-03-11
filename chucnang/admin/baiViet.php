@@ -57,7 +57,7 @@ if($_GET["chucnang"] == "themBaiViet") {
         if(!empty($_POST["hinhNho"])) {
             $_POST["hinhNho"] = urldecode($_POST["hinhNho"]);
             if (substr($_POST["hinhNho"], 0, strlen($_SESSION["baseURL"])) == $_SESSION["baseURL"]) {
-                $_POST["hinhNho"] = substr($_POST["hinhNho"], strlen($_SESSION["baseURL"]));
+                $_POST["hinhNho"] = "/".substr($_POST["hinhNho"], strlen($_SESSION["baseURL"]));
             }
             echo $_POST["hinhNho"];
             if(file_exists("..".$_POST["hinhNho"])) {
@@ -177,7 +177,7 @@ if($_GET["chucnang"] == "suaBaiViet" && $maBaiViet_data) {
         if(!empty($_POST["hinhNho"])) {
             $_POST["hinhNho"] = urldecode($_POST["hinhNho"]);
             if (substr($_POST["hinhNho"], 0, strlen($_SESSION["baseURL"])) == $_SESSION["baseURL"]) {
-                $_POST["hinhNho"] = substr($_POST["hinhNho"], strlen($_SESSION["baseURL"]));
+                $_POST["hinhNho"] = "/".substr($_POST["hinhNho"], strlen($_SESSION["baseURL"]));
             }
             if(file_exists("..".$_POST["hinhNho"])) {
                 $finfo = finfo_open(FILEINFO_MIME_TYPE);
