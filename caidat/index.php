@@ -53,7 +53,7 @@ if(isset($_POST["dbHost"])) {
         $cauTruc_sql = str_replace("#engine#"," ",$cauTruc_sql);
     }
     
-    $cauTruc_sql = str_replace("#dbname",$_POST["dbName"],$cauTruc_sql);
+    $cauTruc_sql = str_replace("#dbname#",$_POST["dbName"],$cauTruc_sql);
     $cauTruc = $csdl->multi_query($cauTruc_sql);
     while ($csdl->next_result()) {;} // flush multi_queries
     if($cauTruc) {
