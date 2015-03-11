@@ -109,10 +109,9 @@ CREATE TABLE IF NOT EXISTS `nhanvien` (
 
 DROP TABLE IF EXISTS `phanloai`;
 CREATE TABLE IF NOT EXISTS `phanloai` (
-`sTT` int(10) unsigned NOT NULL,
   `maBaiViet` int(10) unsigned NOT NULL,
   `maTheLoai` int(10) unsigned DEFAULT NULL
-)#engine#AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+)#engine#DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 -- --------------------------------------------------------
 
@@ -150,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `tuychon` (
 -- Indexes for table `baiviet`
 --
 ALTER TABLE `baiviet`
- ADD PRIMARY KEY (`maBaiViet`), ADD KEY `maTacGia` (`maTacGia`), ADD KEY `maKiemDuyet` (`maKiemDuyet`), ADD FULLTEXT KEY `baiviet` (`tenBaiViet`,`noiDung`);
+ ADD PRIMARY KEY (`maBaiViet`), ADD KEY `maTacGia` (`maTacGia`), ADD KEY `maKiemDuyet` (`maKiemDuyet`), ADD KEY `trangThai` (`trangThai`), ADD FULLTEXT KEY `baiviet` (`tenBaiViet`,`noiDung`);
 
 --
 -- Indexes for table `binhluan`
@@ -168,7 +167,7 @@ ALTER TABLE `nhanvien`
 -- Indexes for table `phanloai`
 --
 ALTER TABLE `phanloai`
- ADD PRIMARY KEY (`sTT`), ADD UNIQUE KEY `unique` (`maBaiViet`,`maTheLoai`), ADD KEY `maTheLoai` (`maTheLoai`);
+ ADD PRIMARY KEY (`maBaiViet`,`maTheLoai``), ADD KEY `maTheLoai` (`maTheLoai`);
 
 --
 -- Indexes for table `theloai`
@@ -202,15 +201,10 @@ MODIFY `maBinhLuan` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 ALTER TABLE `nhanvien`
 MODIFY `maNhanVien` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
--- AUTO_INCREMENT for table `phanloai`
---
-ALTER TABLE `phanloai`
-MODIFY `sTT` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
---
 -- AUTO_INCREMENT for table `theloai`
 --
 ALTER TABLE `theloai`
-MODIFY `maTheLoai` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `maTheLoai` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `tuychon`
 --

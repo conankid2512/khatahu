@@ -43,10 +43,9 @@ if($_GET["chucnang"] == "baiViet") {
                     $htmlPurifier_config->set('HTML.Allowed', '');
                     $htmlPurifier = new HTMLPurifier($htmlPurifier_config);
                     
-                    $_POST["tenNguoiBinhLuan"] = $csdl->real_escape_string($_POST["tenNguoiBinhLuan"]);
-                    $_POST["emailBinhLuan"] = $csdl->real_escape_string($_POST["emailBinhLuan"]);
+                    $_POST["tenNguoiBinhLuan"] = $csdl->real_escape_string($htmlPurifier->purify($_POST["tenNguoiBinhLuan"]));
+                    $_POST["emailBinhLuan"] = $csdl->real_escape_string($htmlPurifier->purify($_POST["emailBinhLuan"]));
                     $_POST["noiDungBinhLuan"] = $csdl->real_escape_string($htmlPurifier->purify($_POST["noiDungBinhLuan"]));
-                    $_POST["noiDungBinhLuan"] = $csdl->real_escape_string($_POST["noiDungBinhLuan"]);
                     
                     $guiBinhLuan_sql = sprintf("INSERT INTO `binhluan`(`maBaiViet`, `noiDung`, `tenNguoiGui`, `emailGui`, `trangThai`) VALUES (%d,'%s','%s','%s',%d)",
                                             $_GET["maBaiViet"],

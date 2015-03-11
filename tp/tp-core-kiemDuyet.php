@@ -14,7 +14,7 @@
                         <div class="input-group">
                     	    <input data-remote="<?php echo layTuyChon("urlChinh"); ?>kiemTraHinhAnh.php" value="<?php echo $maBaiViet_data["hinhNho"]; ?>" class="form-control" id="hinhNho" name="hinhNho" data-error="Hình đại diện không hợp lệ! Vui lòng chọn hình đại diện từ thư viện hình." value="" type="text" required />
                             <span class="input-group-btn">
-                    	       <a href="<?php echo layTuyChon("urlChinh"); ?>filemanager/dialog.php?type=1&amp;field_id=hinhNho" class="btn btn-info iframe-btn" type="button">Chọn hình</a>
+                    	       <a href="<?php echo layTuyChon("urlChinh"); ?>filemanager/dialog.php?type=1&amp;field_id=hinhNho" class="btn btn-danger iframe-btn" type="button">Chọn hình</a>
                             </span>
                     	</div>
                         <div class="help-block with-errors"></div>
@@ -36,8 +36,8 @@
                         </div>
                         <?php } ?>
                     </div>
-                    <div class="col-sm-16 bt-space wow fadeInUp animated" data-wow-delay="1s" data-wow-offset="130">
-                        <button type="submit" class="btn btn-primary">Kiểm duyệt bài viết</button>
+                    <div class="col-sm-16 bt-space">
+                        <button type="submit" class="btn btn-danger">Kiểm duyệt bài viết</button>
                         <button type="reset" class="btn btn-default">Hủy bỏ</button>    
                     </div>
                 </form>

@@ -64,8 +64,8 @@ if($_GET["chucnang"] == "themNhanVien" && $dangNhap->kiemTraQuyenHan() != 3) {
         
         $themNhanVien_sql = "INSERT INTO `nhanvien`(`tenDangNhap`, `tenHienThi`, `matKhauHash`, `email`, `quyenHan`, `moTaNgan`) VALUES ('%s','%s','%s','%s',%d,'%s')";
         $themNhanVien_sql = sprintf($themNhanVien_sql,
-                                    $csdl->real_escape_string($_POST["tenDangNhap"]),
-                                    $csdl->real_escape_string($_POST["tenHienThi"]),
+                                    $csdl->real_escape_string($htmlPurifier->purify($_POST["tenDangNhap"])),
+                                    $csdl->real_escape_string($htmlPurifier->purify($_POST["tenHienThi"])),
                                     $csdl->real_escape_string(password_hash($_POST["matKhau"], PASSWORD_DEFAULT)),
                                     $csdl->real_escape_string($_POST["email"]),
                                     $_POST["quyenHan"],
@@ -123,8 +123,8 @@ if($_GET["chucnang"] == "suaNhanVien" && $dangNhap->kiemTraQuyenHan() != 3) {
         
         $suaNhanVien_sql = "UPDATE `nhanvien` SET `tenDangNhap`='%s',`tenHienThi`='%s',%s`email`='%s',`quyenHan`='%s',`moTaNgan`='%s' WHERE maNhanVien = ".$_GET["maNhanVien"];
         $suaNhanVien_sql = sprintf($suaNhanVien_sql,
-                                    $csdl->real_escape_string($_POST["tenDangNhap"]),
-                                    $csdl->real_escape_string($_POST["tenHienThi"]),
+                                    $csdl->real_escape_string($htmlPurifier->purify($_POST["tenDangNhap"])),
+                                    $csdl->real_escape_string($htmlPurifier->purify($_POST["tenHienThi"])),
                                     $matKhau_sql,
                                     $csdl->real_escape_string($_POST["email"]),
                                     $_POST["quyenHan"],
@@ -176,7 +176,7 @@ if($_GET["chucnang"] == "xoaNhanVien" && !empty($_GET["maNhanVien"]) && $maNhanV
 /*************************/
 
 //Kiểm tra quyền sửa tài khoản
-if($_GET["chucnang"] == "taiKhoan" && isset($_POST["tenDangNhap"])) {
+if($_GET["chucnang"] == "taiKhoan" && isset($_POST["email"])) {
     //Kiểm tra dữ liệu đầu vào
     if($_POST["matKhau"] != $_POST["nhapLaiMatKhau"]) {
         $baoLoi = "Xác nhân mật khẩu không trùng khớp, vui lòng kiểm tra lại!";
@@ -194,11 +194,21 @@ if($_GET["chucnang"] == "taiKhoan" && isset($_POST["tenDangNhap"])) {
         } else {
             $matKhau_sql = "";
         }
-        $suaNhanVien_sql = "UPDATE `nhanvien` SET `tenHienThi`='%s',%s`moTaNgan`='%s' WHERE maNhanVien = ".$_GET["maNhanVien"];
+                
+        //Khai báo thư viện html purifier
+        include_once("../includes/htmlpurifier/HTMLPurifier.auto.php");
+        $htmlPurifier_config = HTMLPurifier_Config::createDefault();
+        $htmlPurifier = new HTMLPurifier($htmlPurifier_config);
+        
+        
+        $suaNhanVien_sql = "UPDATE `nhanvien` SET `tenHienThi`='%s',%s `email`='%s', `moTaNgan`='%s' WHERE maNhanVien = ".$_GET["maNhanVien"];
+        
         $suaNhanVien_sql = sprintf($suaNhanVien_sql,
-                                    $csdl->real_escape_string($_POST["tenHienThi"]),
+                                    $csdl->real_escape_string($htmlPurifier->purify($_POST["tenHienThi"])),
                                     $matKhau_sql,
-                                    $csdl->real_escape_string($_POST["moTaNgan"]));
+                                    $csdl->real_escape_string($htmlPurifier->purify($_POST["email"])),
+                                    $csdl->real_escape_string($htmlPurifier->purify($_POST["moTaNgan"])));
+
         $suaNhanVien = $csdl->query($suaNhanVien_sql);
         
         if($suaNhanVien) {
@@ -209,9 +219,9 @@ if($_GET["chucnang"] == "taiKhoan" && isset($_POST["tenDangNhap"])) {
             $maNhanVien_data = $maNhanVien->fetch_array(MYSQLI_ASSOC);
 
             //Thông báo thành công
-            $thanhCong = "Cập nhật thông tin nhân viên ".$_POST["tenDangNhap"]." thành công!";
+            $thanhCong = "Cập nhật thông tin nhân viên ".$maNhanVien_data["tenDangNhap"]." thành công!";
         } else {
-            $baoLoi = "Cập nhật thông tin nhân viên ".$_POST["tenDangNhap"]." thất bại, vui lòng thử lại hoặc liên hệ quản trị viên!";
+            $baoLoi = "Cập nhật thông tin nhân viên ".$maNhanVien_data["tenDangNhap"]." thất bại, vui lòng thử lại hoặc liên hệ quản trị viên!";
         }
     }
 }
