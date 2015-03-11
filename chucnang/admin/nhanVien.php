@@ -56,6 +56,12 @@ if($_GET["chucnang"] == "themNhanVien" && $dangNhap->kiemTraQuyenHan() != 3) {
     } elseif(empty($_POST["quyenHan"]) || $_POST["quyenHan"] > 3 || $_POST["quyenHan"] < 1) {
         $baoLoi = "Mã quyền hạn không hợp lệ";
     } elseif($dangNhap->kiemTraQuyenHan(0) == 3) {
+        
+        //Khai báo thư viện html purifier
+        include_once("../includes/htmlpurifier/HTMLPurifier.auto.php");
+        $htmlPurifier_config = HTMLPurifier_Config::createDefault();
+        $htmlPurifier = new HTMLPurifier($htmlPurifier_config);
+        
         $themNhanVien_sql = "INSERT INTO `nhanvien`(`tenDangNhap`, `tenHienThi`, `matKhauHash`, `email`, `quyenHan`, `moTaNgan`) VALUES ('%s','%s','%s','%s',%d,'%s')";
         $themNhanVien_sql = sprintf($themNhanVien_sql,
                                     $csdl->real_escape_string($_POST["tenDangNhap"]),
@@ -63,7 +69,7 @@ if($_GET["chucnang"] == "themNhanVien" && $dangNhap->kiemTraQuyenHan() != 3) {
                                     $csdl->real_escape_string(password_hash($_POST["matKhau"], PASSWORD_DEFAULT)),
                                     $csdl->real_escape_string($_POST["email"]),
                                     $_POST["quyenHan"],
-                                    $csdl->real_escape_string($_POST["moTaNgan"]));
+                                    $csdl->real_escape_string($htmlPurifier->purify($_POST["moTaNgan"])));
         $themNhanVien = $csdl->query($themNhanVien_sql);
         if($themNhanVien) {
             $thanhCong = "Thêm nhân viên ".$_POST["tenDangNhap"]." thành công!";
@@ -109,6 +115,12 @@ if($_GET["chucnang"] == "suaNhanVien" && $dangNhap->kiemTraQuyenHan() != 3) {
         } else {
             $matKhau_sql = "";
         }
+        
+        //Khai báo thư viện html purifier
+        include_once("../includes/htmlpurifier/HTMLPurifier.auto.php");
+        $htmlPurifier_config = HTMLPurifier_Config::createDefault();
+        $htmlPurifier = new HTMLPurifier($htmlPurifier_config);
+        
         $suaNhanVien_sql = "UPDATE `nhanvien` SET `tenDangNhap`='%s',`tenHienThi`='%s',%s`email`='%s',`quyenHan`='%s',`moTaNgan`='%s' WHERE maNhanVien = ".$_GET["maNhanVien"];
         $suaNhanVien_sql = sprintf($suaNhanVien_sql,
                                     $csdl->real_escape_string($_POST["tenDangNhap"]),
@@ -116,7 +128,7 @@ if($_GET["chucnang"] == "suaNhanVien" && $dangNhap->kiemTraQuyenHan() != 3) {
                                     $matKhau_sql,
                                     $csdl->real_escape_string($_POST["email"]),
                                     $_POST["quyenHan"],
-                                    $csdl->real_escape_string($_POST["moTaNgan"]));
+                                    $csdl->real_escape_string($htmlPurifier->purify($_POST["moTaNgan"])));
         $suaNhanVien = $csdl->query($suaNhanVien_sql);
         
         if($suaNhanVien) {

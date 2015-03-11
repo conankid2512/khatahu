@@ -60,12 +60,12 @@ if($dangNhap->kiemTraQuyenHan() == 3 && $maTheLoai_data) {
             <div class="row">
                 <div class="col-md-6 margin-bottom-15 form-group">
                     <label for="tenTheLoai">Thứ tự trên Menu chính</label>
-                    <input class="form-control" id="tTMenu" value="<?php echo $maTheLoai_data["tTMenu"]; ?>" type="text" name="tTMenu" pattern="^([0-9]){1,5}$" data-error="Số nguyên dương, tối đa 5 chữ số" />
+                    <input class="form-control" id="tTMenu" value="<?php echo $maTheLoai_data["tTMenu"]; ?>" type="text" name="tTMenu" pattern="([+,-]?[0-9]+)" data-error="Phải là số nguyên" />
                     <div class="help-block with-errors"></div>
                 </div>
                 <div class="col-md-6 margin-bottom-15 form-group">
                     <label for="tenTheLoai">Thứ tự trên trang chủ</label>
-                    <input class="form-control" id="tTTrangChu" value="<?php echo $maTheLoai_data["tTTrangChu"]; ?>" type="text" name="tTTrangChu" pattern="^([0-9]){1,5}$" data-error="Số nguyên dương, tối đa 5 chữ số" />
+                    <input class="form-control" id="tTTrangChu" value="<?php echo $maTheLoai_data["tTTrangChu"]; ?>" type="text" name="tTTrangChu" pattern="([+,-]?[0-9]+)" data-error="Phải là số nguyên" />
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
