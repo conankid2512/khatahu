@@ -45,7 +45,7 @@ if(!empty($dSBaiViet_data)) {
                             <th>Ngày viết</th>
                             <th>Trạng thái</th>
                             <?php
-                            if ($dangNhap->kiemTraQuyenHan() == 3) {
+                            if ($dangNhap->kiemTraQuyenHan() >= 2) {
                                 echo '<th><i class="fa fa-tasks"></i> Kiểm duyệt</th>';
                             }
                             ?>
