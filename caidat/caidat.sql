@@ -167,7 +167,7 @@ ALTER TABLE `nhanvien`
 -- Indexes for table `phanloai`
 --
 ALTER TABLE `phanloai`
- ADD PRIMARY KEY (`maBaiViet`,`maTheLoai``), ADD KEY `maTheLoai` (`maTheLoai`);
+ ADD PRIMARY KEY (`maBaiViet`,`maTheLoai`), ADD KEY `maTheLoai` (`maTheLoai`);
 
 --
 -- Indexes for table `theloai`

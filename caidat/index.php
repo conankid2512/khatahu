@@ -59,7 +59,6 @@ if(isset($_POST["dbHost"])) {
     if($cauTruc) {
         $csdl->select_db($_POST["dbName"]);        
         $tuyChon_sql = "INSERT INTO `tuychon` (`tenTuyChon`, `noiDung`) VALUES ('urlChinh', '".$csdl->real_escape_string($_POST["urlChinh"])."'),('tenWebsite', '".$csdl->real_escape_string($_POST["tenWebsite"])."')";
-        echo $tuyChon_sql;
         $tuyChon = $csdl->query($tuyChon_sql);
         if($tuyChon) {
             $admin_sql = "INSERT INTO `nhanvien`(`maNhanVien`,`tenDangNhap`, `tenHienThi`, `matKhauHash`, `email`, `quyenHan`) VALUES (1,'".$csdl->real_escape_string($_POST["admLogin"])."','".$csdl->real_escape_string($_POST["admName"])."','".$csdl->real_escape_string(password_hash($_POST["admPass"], PASSWORD_DEFAULT))."','".$csdl->real_escape_string($_POST["admEmail"])."',3)";
@@ -202,12 +201,12 @@ if(isset($_POST["dbHost"])) {
         </div>
         <div class="row">
             <div class="col-md-6 margin-bottom-15 form-group">
-                <label for="admEmail">Website Name</label>
+                <label for="tenWebsite">Tên Website</label>
                 <input class="form-control" id="tenWebsite" value="" type="text" name="tenWebsite" data-error="Tên website không thể rỗng" required />
                 <div class="help-block with-errors"></div>
             </div>
             <div class="col-md-6 margin-bottom-15 form-group">
-                <label for="admPass">Main URL</label>
+                <label for="urlChinh">URL Chính (kết thức với dấu /)</label>
                 <input class="form-control" id="urlChinh" value="" type="text" name="urlChinh" data-error="Url Chính không thể rỗng" required/>
                 <div class="help-block with-errors"></div>
             </div>
@@ -224,11 +223,6 @@ if(isset($_POST["dbHost"])) {
           
         </div>
       </div>
-      <footer class="templatemo-footer">
-        <div class="templatemo-copyright">
-          <p>Copyright &copy; 2084 Your Company Name <!-- Credit: www.templatemo.com --></p>
-        </div>
-      </footer>
     </div>
 </body>
 </html>

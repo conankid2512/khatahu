@@ -127,7 +127,7 @@ function hienThiTopMenu() {
 function topBaiViet() {
     global $csdl;
     $topBaiViet = NULL;
-    $xemNhieu_sql = "SELECT * FROM baiViet WHERE ngayDang > DATE_SUB(NOW(), INTERVAL 30 DAY) AND trangThai = 2 ORDER BY luotXem DESC, ngayDang DESC LIMIT 5";
+    $xemNhieu_sql = "SELECT * FROM baiviet WHERE ngayDang > DATE_SUB(NOW(), INTERVAL 30 DAY) AND trangThai = 2 ORDER BY luotXem DESC, ngayDang DESC LIMIT 5";
     $xemNhieu = $csdl->query($xemNhieu_sql);
     if($xemNhieu) {
         $i = 0;
@@ -139,7 +139,7 @@ function topBaiViet() {
         }
     }
     
-    $binhLuanNhieu_sql = "SELECT * FROM baiViet WHERE ngayDang > DATE_SUB(NOW(), INTERVAL 30 DAY) AND trangThai = 2 ORDER BY luotBinhLuan DESC, ngayDang DESC LIMIT 5";
+    $binhLuanNhieu_sql = "SELECT * FROM baiviet WHERE ngayDang > DATE_SUB(NOW(), INTERVAL 30 DAY) AND trangThai = 2 ORDER BY luotBinhLuan DESC, ngayDang DESC LIMIT 5";
     $binhLuanNhieu = $csdl->query($binhLuanNhieu_sql);
     if($binhLuanNhieu) {
         $i = 0;
@@ -151,7 +151,7 @@ function topBaiViet() {
         }
     }
     
-    $moiNhat_sql = "SELECT * FROM baiViet ORDER BY ngayDang DESC LIMIT 5";
+    $moiNhat_sql = "SELECT * FROM baiviet ORDER BY ngayDang DESC LIMIT 5";
     $moiNhat = $csdl->query($moiNhat_sql);
     if($moiNhat) {
         $i = 0;

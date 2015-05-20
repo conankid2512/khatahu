@@ -35,7 +35,7 @@ class dangNhap {
         $tenDangNhap = $this->kncsdl->real_escape_string($tenDangNhap);
         
         //Lấy thông tin người dùng
-        $truyVanDangNhap_sql = "SELECT maNhanVien, tenDangNhap, tenHienThi, email, matKhauHash, quyenHan FROM nhanVien WHERE tenDangNhap = '".$tenDangNhap."' OR email = '".$tenDangNhap."';";
+        $truyVanDangNhap_sql = "SELECT maNhanVien, tenDangNhap, tenHienThi, email, matKhauHash, quyenHan FROM nhanvien WHERE tenDangNhap = '".$tenDangNhap."' OR email = '".$tenDangNhap."';";
         $truyVanDangNhap = $this->kncsdl->query($truyVanDangNhap_sql);
         
         //Kiểm tra mật khẩu và quyền hạn
